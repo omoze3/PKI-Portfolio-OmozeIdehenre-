@@ -42,8 +42,11 @@ Is the Root CA marked as trusted by your system?
 
 <!-- Yes / No -->
 Yes
+
 If yes, explain where that trust comes from (OS/browser root store).
+
 Root Store 
+
 If no, explain what warning or behavior occurred.
 
 ---
