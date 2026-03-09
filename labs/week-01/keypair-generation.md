@@ -42,7 +42,7 @@ Explain the risk in terms of:
   - Identity
   - Impersonation
   - Trust
-  - 
+   
 If someone were to obtain my private key, they could obtain access to my private information and act as me to obtain further personal information. That private key acts as my digital identity. PKI is so effective because websites/systems can trust that the owner holds the private key. If someone (not the owner) were to take hold of that private key, then trust is automatically broken. The key must be revoked and replaced to restore trust. 
 ---
 
