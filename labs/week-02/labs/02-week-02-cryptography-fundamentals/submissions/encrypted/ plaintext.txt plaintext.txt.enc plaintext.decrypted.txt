@@ -71,9 +71,15 @@ The original plaintext is shifted utilizing AES encryption algorithm into cipher
 
 - What would happen if the wrong password were used
 
+The encryption key formulated from that password would not be valid. This results in the ciphertext not being correctly converted back to the original plaintext. A decryption error or unreadable output will be produced. 
 
 - What security property does symmetric encryption provide?
+
+Confidentiality that enforces that only those who are authorized with the correct key can read the encrypted data received. This protects the sensitive data from being accessed by unauthorized parties. 
+
 - Why does TLS use symmetric encryption for data transfer
+
+Symmetric encryption is more agile than asymmetric encryption. Shortly after the TLS handshake forms the trust and securely exchanges a session key, symmetric encryption (AES, as an example) is utilized to guard the sensitive data exchanged between client and server. 
 
 ### Submission (Portfolio Repo)
 Ensure the following files exist:
