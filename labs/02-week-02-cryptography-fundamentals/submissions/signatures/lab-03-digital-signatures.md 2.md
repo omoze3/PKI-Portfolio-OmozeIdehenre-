@@ -74,10 +74,22 @@ The verification should fail.
 
 ## Part 3 — Observations
 Document the following in your Week 2 notes:
-- Why verification succeeds before tampering
-- Why verification fails after modification
-- Why digital signatures require both hashing and asymmetric cryptography
-- How this relates to certificate signing in PKI
+
+- Why verification succeeds before tampering?
+
+The file is unchanged, so the hash that is formulated during verification matches the hash that was signed with the private key. Because they match, the signature is valid. 
+
+- Why does verification fail after modification?
+
+A change can completely alter the file hash. Since the signature was formulated from the original hash, the new hash discontinues matching the signed value. Thus, the verification falters.
+
+- Why do digital signatures require both hashing and asymmetric cryptography?
+
+Hashing formulates a fixed-length fingerprint of the data, and asymmetric cryptography enables the private key to sign that fingerprint while the public key verifies it. The two keys work in concert to provide integrity and authentication.
+  
+- How does this relate to certificate signing in PKI
+
+In PKI, a CA hashes the certificate data and signs that hash with its private key. Anyone can use the CA's public key to verify that the certificate has not been altered and was issued by that CA. 
 
 ## Submission (Portfolio Repo)
 Ensure the following files exist:
