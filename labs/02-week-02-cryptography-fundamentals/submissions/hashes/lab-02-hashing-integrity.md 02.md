@@ -113,7 +113,7 @@ openssl dgst -sha512 message.txt
 - Why are weak hashing algorithms (like SHA-1) no longer recommended?
 
 - SHA-1 is vulnerable to collision attacks, where different inputs can produce the same hash. This breaks data integrity and makes it insecure for modern systems like PKI and TLS.
-- 
+  
 CVI PKI Career Pathway — Foundations Phase
 
 CVI PKI Career Pathway — Foundations Phase
