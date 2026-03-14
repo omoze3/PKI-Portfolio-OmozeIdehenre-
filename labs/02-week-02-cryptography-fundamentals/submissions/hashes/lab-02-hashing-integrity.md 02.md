@@ -63,9 +63,26 @@ They should be completely different.
 ## Part 3 — Observations
 Document the following in your Week 2 notes:
 - Why the hash changed after a small modification
+
+- The function of a cryptographic hash is designed to detect the smallest change in the input data produced. The slightest modification changes the hash.  
+
 - Why hashing does NOT provide confidentiality
-- What security property hashing provides
+
+- It doesn't hide or encrypt the original data. The sensitive data remains readable. Hashing doesn't protect data from being viewed. It just creates a fixed-length fingerprint of the data that can be utilized for verification.
+
+- What security property does hashing provide?
+
+- Integrity of data. Hashing allows systems to detect any alteration(s) in data. If a file's hash changes, it indicates a file modification.
+
 - Where hashing is used in PKI systems
+
+- Digital Signatures: Hash of message signed w/ a private key.
+
+- Certificate Signing: CAs hash certificate data before signing.
+
+- TLS Handshakes: Hashing helps verify the integrity of handshake messages. 
+
+- Certificate Fingerprints: Hashes are used to identify certificates uniquely. 
 
 Examples to consider:
 - Certificate signatures
@@ -90,7 +107,14 @@ Try using a different hashing algorithm:
 openssl dgst -sha512 message.txt
 
 - How does the output length compare?
+
+- SHA-512 formulates a 512-bit hash (128 hex characters), which is longer than SHA-256 (256 bits / 64 hex characters) and SHA-1 (160 bits / 40 hex characters). 
+
 - Why are weak hashing algorithms (like SHA-1) no longer recommended?
+
+- SHA-1 is vulnerable to collision attacks, where different inputs can produce the same hash. This breaks data integrity and makes it insecure for modern systems like PKI and TLS.
+- 
+CVI PKI Career Pathway — Foundations Phase
 
 CVI PKI Career Pathway — Foundations Phase
 
