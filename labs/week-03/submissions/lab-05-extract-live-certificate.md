@@ -25,6 +25,7 @@ This lab focused on retrieving a live TLS certificate from a website and inspect
 | Subject Alternative Name | github.com, www.github.com |
 | Key Usage                | Digital Signature |
 | Extended Key Usage       | TLS Web Server Authentication, TLS Web Client Authentication |
+<img width="628" height="463" alt="SET PKI Version 3 (0x2)" src="https://github.com/user-attachments/assets/10daa4ad-3dee-4b60-8447-84955d872e24" />
 
 ---
 
