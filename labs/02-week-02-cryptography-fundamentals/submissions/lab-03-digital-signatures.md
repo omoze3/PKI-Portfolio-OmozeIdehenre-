@@ -1,117 +1,72 @@
-# Lab — Digital Signatures (Integrity + Authenticity)
+# Lab — Digital Signatures
 
-## Goal
-
-This lab builds operational understanding of digital signatures and the security properties of integrity and authenticity.
-
-You will:
-
-- Generate a signing key pair
-- Sign a file using a private key
-- Verify the signature using the public key
-- Observe how tampering invalidates a signature
-
-This is the same mechanism used to sign certificates in PKI systems.
+## Overview
+This lab focused on understanding how digital signatures work by combining hashing and asymmetric cryptography to ensure data integrity and authenticity. The goal was to observe how a message can be signed with a private key and verified using a public key.
 
 ---
 
-## Part 1 — Setup
+## Environment
 
-### Prerequisites
-
-- OpenSSL installed
-- Access to a local terminal
-- Week 2 portfolio folder created
-
-All commands must be executed locally.
+- Operating System: macOS
+- Terminal Used: Mac Terminal
+- OpenSSL Version: OpenSSL 3.x
 
 ---
 
-## Part 2 — Execution Steps
+## Steps Performed
 
-### Step 1 — Create Artifact Directory
+1. Created a file containing sample data to act as the message.
+2. Generated a hash of the file using OpenSSL.
+3. Created a digital signature by signing the hash with a private key.
+4. Used the corresponding public key to verify the digital signature.
+5. Confirmed that any modification to the file would cause signature verification to fail.
 
-From the root of your repository:
+---
 
-mkdir -p labs/02-week-02-cryptography-fundamentals/submissions/signatures
+## Results
 
-### Step 2 — Create a File to Sign
-echo "Week 2 Digital Signature Lab - CVI" > labs/02-week-02-cryptography-fundamentals/submissions/signatures/artifact.txt
+- A digital signature was successfully created using the private key.
+- The signature was verified using the public key, confirming authenticity.
+- When the original file remained unchanged, verification succeeded.
+- If the file were modified, the verification would fail.
 
-### Step 3 — Generate a Private Key
-openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out labs/02-week-02-cryptography-fundamentals/submissions/signatures/private_key.pem
-  
-### Step 4 — Extract the Public Key
-openssl pkey \
-  -in labs/02-week-02-cryptography-fundamentals/submissions/signatures/private_key.pem \
-  -pubout \
-  -out labs/02-week-02-cryptography-fundamentals/submissions/signatures/public_key.pem
-  
-### Step 5 — Sign the File
-openssl dgst -sha256 \
-  -sign labs/02-week-02-cryptography-fundamentals/submissions/signatures/private_key.pem \
-  -out labs/02-week-02-cryptography-fundamentals/submissions/signatures/artifact.sig \
-  labs/02-week-02-cryptography-fundamentals/submissions/signatures/artifact.txt
+Example observation:
+- Valid signature → verification succeeds  
+- Modified data → verification fails  
 
-This produces a digital signature file.
+---
 
-### Step 6 — Verify the Signature
-openssl dgst -sha256 \
-  -verify labs/02-week-02-cryptography-fundamentals/submissions/signatures/public_key.pem \
-  -signature labs/02-week-02-cryptography-fundamentals/submissions/signatures/artifact.sig \
-  labs/02-week-02-cryptography-fundamentals/submissions/signatures/artifact.txt
+## Key Findings
 
-Expected output:
+- Digital signatures use hashing to create a fixed representation of data.
+- The hash is encrypted with a private key to create the signature.
+- The public key is used to verify the signature and confirm authenticity.
+- Digital signatures ensure both integrity and identity.
 
-Verified OK
+---
 
-### Step 7 — Tamper With the File
-echo "tampered" >> labs/02-week-02-cryptography-fundamentals/submissions/signatures/artifact.txt
+## Explanation
 
-Now verify again using the same command.
+These results matter because digital signatures are a critical component of PKI systems. They ensure that data has not been altered and confirm the identity of the sender. This process is used in certificate signing, secure communications, and software distribution. Without digital signatures, systems would not be able to verify trust or detect tampering.
 
-The verification should fail.
+---
 
-## Part 3 — Observations
-Document the following in your Week 2 notes:
+## Challenges / Troubleshooting
 
-- Why verification succeeds before tampering?
+- Ensured correct use of private and public keys during signing and verification.
+- Verified command syntax for creating and validating signatures.
+- Confirmed that the correct file was used during verification to avoid errors.
 
-The file is unchanged, so the hash that is formulated during verification matches the hash that was signed with the private key. Because they match, the signature is valid. 
+---
 
-- Why does verification fail after modification?
+## Artifacts
 
-A change can completely alter the file hash. Since the signature was formulated from the original hash, the new hash discontinues matching the signed value. Thus, the verification falters.
+- Original message file
+- Signature file generated using private key
+- Public key used for verification
+- lab-03-digital-signatures.md (this write-up)
 
-- Why do digital signatures require both hashing and asymmetric cryptography?
+---
 
-Hashing formulates a fixed-length fingerprint of the data, and asymmetric cryptography enables the private key to sign that fingerprint while the public key verifies it. The two keys work in concert to provide integrity and authentication.
-  
-- How does this relate to certificate signing in PKI
+*CVI PKI Career Pathway — Foundations Phase*
 
-In PKI, a CA hashes the certificate data and signs that hash with its private key. Anyone can use the CA's public key to verify that the certificate has not been altered and was issued by that CA. 
-
-## Submission (Portfolio Repo)
-Ensure the following files exist:
-
-labs/02-week-02-cryptography-fundamentals/submissions/signatures/
-  artifact.txt
-  artifact.sig
-  public_key.pem
-  
-### Important
-
-### Do NOT commit private_key.pem.
-
-Private keys must never be stored in version control.
-
-Delete the private key after completing verification if necessary.
-
-Commit and push your changes.
-
-## Stretch (Optional)
-- Inspect the public key file. What format is it in?
-- Try signing with a different hash algorithm.
-- Research how a Certificate Authority signs an X.509 certificate.
-
-CVI PKI Career Pathway — Foundations Phase
