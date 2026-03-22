@@ -25,6 +25,8 @@ This lab focused on retrieving and analyzing an X.509 certificate using OpenSSL 
 | Not After            |  May 18 18:19:55 2026 GMT                      |
 | Public Key Algorithm |  id-ecPublicKey                      |
 
+<img width="553" height="467" alt="Google Certificate" src="https://github.com/user-attachments/assets/b49c129c-a810-4f4f-bd9d-28a0e4c54703" />
+
 ---
 
 ## Observations
