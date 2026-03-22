@@ -1,120 +1,70 @@
 # Lab — Hashing & Integrity
 
-## Goal
-
-This lab builds operational understanding of cryptographic hashing and the security property of integrity.
-
-You will:
-
-- Generate a SHA-256 hash of a file
-- Modify the file
-- Generate a new hash
-- Observe how even small changes completely alter the hash value
+## Overview
+This lab focused on understanding how cryptographic hashing works and how it is used to ensure data integrity. The goal was to observe how even a small change in a file produces a completely different hash and to understand how hashing is used in PKI systems.
 
 ---
 
-## Part 1 — Setup
+## Environment
 
-### Prerequisites
-
-- OpenSSL installed
-- Access to a local terminal
-- Week 2 portfolio folder created
-
-All commands must be executed locally.
+- Operating System: macOS
+- Terminal Used: Mac Terminal
+- OpenSSL Version: OpenSSL 3.x
 
 ---
 
-## Part 2 — Execution Steps
+## Steps Performed
 
-### Step 1 — Create Artifact Directory
+1. Created a test file containing sample text data.
+2. Generated a SHA-256 hash of the file using OpenSSL and saved the output.
+3. Modified the original file by adding additional content.
+4. Generated a second SHA-256 hash of the modified file.
+5. Compared the original and modified hash outputs to observe differences.
 
-From the root of your repository:
+---
 
-mkdir -p labs/02-week-02-cryptography-fundamentals/submissions/hashes
+## Results
 
-### Step 2 — Create a Test File
-echo "Week 2 Hashing Lab - CVI" > labs/02-week-02-cryptography-fundamentals/submissions/hashes/message.txt
+- The original file produced a fixed-length SHA-256 hash.
+- After modifying the file, the new hash value was completely different.
+- Even a small change in the file resulted in a drastically different hash output.
+- This confirmed that hashing is highly sensitive to input changes.
 
-Open the file and confirm it is readable.
+Example observation:
+- Original hash ≠ Tampered hash
 
-### Step 3 — Generate a SHA-256 Hash
-openssl dgst -sha256 labs/02-week-02-cryptography-fundamentals/submissions/hashes/message.txt \
-> labs/02-week-02-cryptography-fundamentals/submissions/hashes/message.sha256.txt
+---
 
-Open the hash file and observe:
-- A fixed-length output
-- A hexadecimal string
-- The algorithm used (SHA-256)
+## Key Findings
 
-### Step 4 — Modify (Tamper With) the File
-echo "tampered" >> labs/02-week-02-cryptography-fundamentals/submissions/hashes/message.txt
+- Cryptographic hashes produce a fixed-length output regardless of input size.
+- Even the smallest change in data results in a completely different hash value.
+- Hashing is designed to detect tampering or changes in data.
+- Hashing does not encrypt or hide the original data.
 
-Even a single character change is enough.
+---
 
-### Step 5 — Generate a New Hash
-openssl dgst -sha256 labs/02-week-02-cryptography-fundamentals/submissions/hashes/message.txt \
-> labs/02-week-02-cryptography-fundamentals/submissions/hashes/message_tampered.sha256.txt
+## Explanation
 
-Compare the two hash outputs.
+These results matter because hashing is a core mechanism used to verify data integrity in PKI systems. When data is hashed, any modification can be detected by comparing hash values. This is critical in digital signatures, certificate validation, and secure communications. However, hashing does not provide confidentiality, since the original data is still visible and not encrypted.
 
-They should be completely different.
+---
 
-## Part 3 — Observations
-Document the following in your Week 2 notes:
-- Why the hash changed after a small modification
+## Challenges / Troubleshooting
 
-- The function of a cryptographic hash is designed to detect the smallest change in the input data produced. The slightest modification changes the hash.  
+- Ensured correct OpenSSL syntax when generating hash values.
+- Verified file paths to ensure the correct files were hashed.
+- Confirmed that file modification occurred before generating the second hash.
 
-- Why hashing does NOT provide confidentiality
+---
 
-- It doesn't hide or encrypt the original data. The sensitive data remains readable. Hashing doesn't protect data from being viewed. It just creates a fixed-length fingerprint of the data that can be utilized for verification.
+## Artifacts
 
-- What security property does hashing provide?
+- message.txt (original file)
+- message.sha256.txt (original hash)
+- message_tampered.sha256.txt (modified hash)
+- lab-02-hashing-integrity.md (this write-up)
 
-- Integrity of data. Hashing allows systems to detect any alteration(s) in data. If a file's hash changes, it indicates a file modification.
+---
 
-- Where hashing is used in PKI systems
-
-- Digital Signatures: Hash of message signed w/ a private key.
-
-- Certificate Signing: CAs hash certificate data before signing.
-
-- TLS Handshakes: Hashing helps verify the integrity of handshake messages. 
-
-- Certificate Fingerprints: Hashes are used to identify certificates uniquely. 
-
-Examples to consider:
-- Certificate signatures
-- File integrity validation
-- Code signing
-
-### Submission (Portfolio Repo)
-Ensure the following files exist:
-
-labs/02-week-02-cryptography-fundamentals/submissions/hashes/
-  message.txt
-  message.sha256.txt
-  message_tampered.sha256.txt
-
-Commit and push your changes.
-
-Do not upload screenshots unless explicitly requested.
-
-## Stretch (Optional)
-Try using a different hashing algorithm:
-
-openssl dgst -sha512 message.txt
-
-- How does the output length compare?
-
-- SHA-512 formulates a 512-bit hash (128 hex characters), which is longer than SHA-256 (256 bits / 64 hex characters) and SHA-1 (160 bits / 40 hex characters). 
-
-- Why are weak hashing algorithms (like SHA-1) no longer recommended?
-
-- SHA-1 is vulnerable to collision attacks, where different inputs can produce the same hash. This breaks data integrity and makes it insecure for modern systems like PKI and TLS.
-  
-CVI PKI Career Pathway — Foundations Phase
-
-CVI PKI Career Pathway — Foundations Phase
-
+*CVI PKI Career Pathway — Foundations Phase*
