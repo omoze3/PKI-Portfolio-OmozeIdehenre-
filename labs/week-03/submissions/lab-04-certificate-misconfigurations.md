@@ -1,30 +1,7 @@
 # Lab 04 — Detect Certificate Misconfigurations
 
 ## Overview
-This lab analyzes common certificate misconfigurations and how they break TLS trust.
-
----
-
-## Scenario 1 — Missing Subject Alternative Name
-
-**Would modern browsers trust this certificate?**  
-No.
-
-**Analysis:**  
-Browsers require SAN to match the hostname. CN alone is not enough.
-
----
-
-## Scenario 2 — Incorrect Extended Key Usage
-
-**Would a browser accept this certificate for a web server?**  
-No.
-
-**Analysis:**  
-It must include TLS We# Lab 04 — Detect Certificate Misconfigurations
-
-## Overview
-This lab focused on analyzing common certificate misconfigurations that can break TLS validation and cause outages. The PKI concept being investigated was how certificate fields, extensions, validity periods, and trust chains affect whether a browser will trust a certificate.
+This lab focused on identifying common certificate misconfigurations that cause TLS validation failures in real-world systems. The goal was to understand how specific certificate fields and extensions impact whether a browser trusts a connection. This directly relates to PKI trust chains, certificate validation, and secure HTTPS communication.
 
 ---
 
@@ -34,69 +11,39 @@ This lab focused on analyzing common certificate misconfigurations that can brea
 No. Modern browsers would not trust this certificate for `example.com`.
 
 **Analysis:**  
-Modern browsers require the Subject Alternative Name (SAN) extension to identify which hostname a certificate is valid for. The Common Name (CN) alone is no longer considered sufficient for hostname validation because browsers and standards now rely on SAN as the authoritative source. A user would likely see a certificate warning or privacy error indicatin
-**Would a browser accept this certificate for a web server?**  
-No. A browser would not accept this certificate for HTTPS on a web server.
-
-**Analysis:**  
-Extended Key Usage (EKU) defines what purposes a certificate is allowed to be used for. A certificate used for HTTPS must include `TLS Web Server Authentication` so the browser knows it is valid for server-side authentication. If the certificate only contains `Client Authentication`, the browser would reject it for web server use and the user would likely see a certificate error or secure connection failure.
-
----
-
-## Scenario 3 — Expired Certificate
-
-**What happens if this certificate is used today?**  
-TLS validation would fail, and the browser would reject the connection.
-
-**Analysis:**  
-Certificates are only valid during the time window between the `Not Before` and `Not After` dates. Once the current date is past the expiration date, the certificate is no longer trusted because its validity period has ended. Certificate lifecycle management is critical because organizations must renew and replace certificates before they expire or they risk outages. A user would likely see a browser warning such as “Your connection is not private” or an error stating the certificate has expired.
-
-# Lab 04 — Detect Certificate Misconfigurations
-
-## Overview
-This lab analyzes common certificate misconfigurations and how they break TLS trust.
-
----
-
-## Scenario 1 — Missing Subject Alternative Name
-
-**Would modern browsers trust this certificate?**  
-No.
-
-**Analysis:**  
-Browsers require SAN to match the hostname. CN alone is not enough.
+Modern browsers require the Subject Alternative Name (SAN) extension to validate the hostname of a website. The Common Name (CN) is no longer used for hostname verification because it is considered outdated and less flexible. If SAN is missing, the browser cannot confirm that the certificate is valid for the requested domain. A user would typically see a browser error such as “Your connection is not private” or a hostname mismatch warning.
 
 ---
 
 ## Scenario 2 — Incorrect Extended Key Usage
 
 **Would a browser accept this certificate for a web server?**  
-No.
+No. A browser would reject this certificate for HTTPS.
 
 **Analysis:**  
-It must include TLS Web Server Authentication. Client Authentication alone will fail.
+Extended Key Usage (EKU) defines what a certificate is allowed to be used for. For HTTPS, the certificate must include `TLS Web Server Authentication`. If the certificate only includes `Client Authentication`, it is not valid for server identity. Because of this mismatch, the browser will fail validation and block the connection, often showing a certificate usage error or secure connection failure.
 
 ---
 
 ## Scenario 3 — Expired Certificate
 
 **What happens if this certificate is used today?**  
-Validation fails.
+TLS validation fails, and the browser will reject the connection.
 
 **Analysis:**  
-The certificate is expired and no longer trusted.
+Certificates are only trusted within their validity period, defined by the “Not Before” and “Not After” fields. Once the current date passes the expiration date, the certificate is considered invalid and untrusted. This is why certificate lifecycle management is critical in production environments. If a certificate expires, users will see warnings such as “Certificate expired” or “Your connection is not private,” which can lead to service outages.
 
 ---
 
 ## Scenario 4 — Missing Intermediate Certificate
 
 **What error would a browser likely display?**  
-Chain error / cannot verify issuer.
+The browser would show a trust or chain validation error, such as “Unable to verify issuer” or “Incomplete certificate chain.”
 
 **Analysis:**  
-The browser cannot build a trust chain to a root CA.
+Certificate trust is established through a chain from the leaf certificate to an intermediate CA and finally to a trusted root CA. If the server does not provide the intermediate certificate, the browser cannot build this chain and therefore cannot verify trust. Some browsers may attempt to fetch missing intermediates automatically, but others will fail outright. This inconsistency can cause intermittent issues across different environments.
 
 ---
 
 ## Key Takeaway
-Misconfigurations like missing SAN, wrong EKU, expiration, or missing intermediates break trust even if encryption is correct.
+Certificate misconfigurations are one of the most common causes of TLS failures in real-world systems. Even when encryption is functioning correctly, missing SAN fields, incorrect EKU values, expired certificates, or incomplete chains will break trust and cause browsers to reject connections. Proper certificate configuration and lifecycle management are critical to maintaining secure and reliable systems.
