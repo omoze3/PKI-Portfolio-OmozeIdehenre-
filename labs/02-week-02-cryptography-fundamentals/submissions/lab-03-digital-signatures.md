@@ -34,6 +34,7 @@ Example observation:
 - Valid signature → verification succeeds  
 - Modified data → verification fails  
 
+[PKI Week 2 Artifacts .pdf](https://github.com/user-attachments/files/26174786/PKI.Week.2.Artifacts.pdf)
 ---
 
 ## Key Findings
