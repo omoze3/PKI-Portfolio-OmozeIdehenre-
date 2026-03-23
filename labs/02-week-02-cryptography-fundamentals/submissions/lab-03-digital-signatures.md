@@ -25,30 +25,28 @@ This lab focused on understanding how digital signatures work by combining hashi
 
 ## Results
 
-- A digital signature was successfully created using the private key.
-- The signature was verified using the public key, confirming authenticity.
-- When the original file remained unchanged, verification succeeded.
-- If the file were modified, the verification would fail.
+* Verification of the digital signature failed when the file content was modified.
+* This demonstrated that even a small change invalidates the signature.
 
 Example observation:
 - Valid signature → verification succeeds  
 - Modified data → verification fails  
 
-[PKI Week 2 Artifacts .pdf](https://github.com/user-attachments/files/26174786/PKI.Week.2.Artifacts.pdf)
+<img width="578" height="147" alt="Lab 3 Week 2" src="https://github.com/user-attachments/assets/b56bee96-e2b6-4652-ba53-dd796433d0cf" />
+
 ---
 
 ## Key Findings
 
-- Digital signatures use hashing to create a fixed representation of data.
-- The hash is encrypted with a private key to create the signature.
-- The public key is used to verify the signature and confirm authenticity.
-- Digital signatures ensure both integrity and identity.
+* Modified data → verification fails
+Verification of the digital signature failed when the file content was modified.
+This demonstrated that even a small change invalidates the signature.
 
 ---
 
 ## Explanation
 
-These results matter because digital signatures are a critical component of PKI systems. They ensure that data has not been altered and confirm the identity of the sender. This process is used in certificate signing, secure communications, and software distribution. Without digital signatures, systems would not be able to verify trust or detect tampering.
+Digital signatures include a hash of the original file. When the file changes, the hash changes, so the signature no longer matches. This proves: Integrity protection and Tamper detection
 
 ---
 
