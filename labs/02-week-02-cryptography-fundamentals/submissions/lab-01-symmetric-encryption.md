@@ -29,11 +29,13 @@ This lab focused on understanding how symmetric encryption works and how it is u
 - When decrypted correctly, the file returned to its original readable form.
 - This demonstrated that symmetric encryption protects data confidentiality during storage or transmission.
 
+
 Example observation:
 - Plaintext → readable
 - Encrypted file → unreadable
 - Decrypted file → matches original
 
+[PKI Week 2 Artifacts .pdf](https://github.com/user-attachments/files/26174786/PKI.Week.2.Artifacts.pdf)
 ---
 
 ## Key Findings
