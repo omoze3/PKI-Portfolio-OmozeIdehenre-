@@ -35,7 +35,8 @@ Example observation:
 - Encrypted file → unreadable
 - Decrypted file → matches original
 
-[PKI Week 2 Artifacts .pdf](https://github.com/user-attachments/files/26174786/PKI.Week.2.Artifacts.pdf)
+<img width="587" height="76" alt="Week 2 Lab 1 " src="https://github.com/user-attachments/assets/fe719d6d-c882-4119-98ed-3e3faab337ee" />
+
 ---
 
 ## Key Findings
