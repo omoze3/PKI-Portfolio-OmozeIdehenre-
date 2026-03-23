@@ -33,6 +33,7 @@ This lab focused on understanding how cryptographic hashing works and how it is 
 Example observation:
 - Original hash ≠ Tampered hash
 
+[PKI Week 2 Artifacts .pdf](https://github.com/user-attachments/files/26174786/PKI.Week.2.Artifacts.pdf)
 ---
 
 ## Key Findings
