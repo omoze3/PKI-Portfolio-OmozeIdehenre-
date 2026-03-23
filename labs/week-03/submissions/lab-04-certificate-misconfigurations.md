@@ -31,6 +31,10 @@ Extended Key Usage (EKU) defines what a certificate is allowed to be used for. F
 ## Scenario 3 — Expired Certificate
 
 **What happens if this certificate is used today?**  
+
+Not Before: May 1 2022
+Not After:  May 1 2023
+
 TLS validation fails, and the browser will reject the connection.
 
 **Analysis:**  
@@ -39,6 +43,10 @@ Certificates are only trusted within their validity period, defined by the “No
 ---
 
 ## Scenario 4 — Missing Intermediate Certificate
+
+A server presents a certificate during a TLS handshake, but the intermediate certificate is not included in the chain.
+
+Question: What error would a browser likely display?
 
 **What error would a browser likely display?**  
 The browser would show a trust or chain validation error, such as “Unable to verify issuer” or “Incomplete certificate chain.”
