@@ -17,7 +17,9 @@ Modern browsers require the Subject Alternative Name (SAN) extension to validate
 
 ## Scenario 2 — Incorrect Extended Key Usage
 
-**Would a browser accept this certificate for a web server?**  Extended Key Usage: Client Authentication
+**Would a browser accept this certificate for a web server?** 
+
+Extended Key Usage: Client Authentication
 No. A browser would reject this certificate for HTTPS.
 
 **Analysis:**  
