@@ -38,8 +38,7 @@ This demonstrated how operating systems determine whether a certificate is trust
 
 - After removal:
   - Verification output:
-    ```
-verification failed: 20 (unable to get local issuer certificate)
+    ```verification failed: 20 (unable to get local issuer certificate)
     ```
   - This confirmed the trust chain was broken after removing the root CA
 
