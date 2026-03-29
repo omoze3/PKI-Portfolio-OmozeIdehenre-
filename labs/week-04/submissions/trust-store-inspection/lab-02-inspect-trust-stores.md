@@ -25,10 +25,15 @@ This lab explored how macOS stores trusted root Certificate Authorities (CAs) an
 - Number of root CAs: 154
 
 - Example Root CA:
-  - Subject: REPLACE_SUBJECT
-  - Issuer: REPLACE_ISSUER
-  - Expiration: REPLACE_EXPIRATION
+  - Subject: /CN=DigiCert Global Root CA/OU=www.digicert.com/O=DigiCert Inc/C=US
+  - Issuer: /CN=DigiCert Global Root CA/OU=www.digicert.com/O=DigiCert Inc/C=US
+  - Expiration: Nov 10 00:00:00 2031 GMT
 
+- Example Root CA:
+  - Subject: /C=US/ST=Arizona/L=Scottsdale/O=GoDaddy.com, Inc./CN=Go Daddy Root Certificate Authority - G2
+  - Issuer: /C=US/ST=Arizona/L=Scottsdale/O=GoDaddy.com, Inc./CN=Go Daddy Root Certificate Authority - G2
+  - Expiration: Dec 31 23:59:59 2037 GMT
+ 
 - Verify Output:
   - Verify return code: 0 (ok)
 
@@ -55,6 +60,8 @@ One important observation from this lab is how many root CAs are already trusted
 
 ## Challenges / Troubleshooting
 Initially, the certificate fields were not easy to read when using truncated OpenSSL output. I resolved this by using explicit flags to print the subject, issuer, and end date directly.
+
+I was also alittle bit confused about which root certificates to apply to the write up. I saw 2 for Go Daddy and DigiCert
 
 ---
 
