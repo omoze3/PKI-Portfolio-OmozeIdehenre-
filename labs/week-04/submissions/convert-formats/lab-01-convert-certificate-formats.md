@@ -8,7 +8,7 @@ This lab focused on working with the same certificate in different storage forma
 ## Environment
 - Operating System: macOS
 - Terminal Used: Terminal
-- OpenSSL Version: [paste output of `openssl version`]
+- OpenSSL Version: 3.3.6
 
 ---
 
