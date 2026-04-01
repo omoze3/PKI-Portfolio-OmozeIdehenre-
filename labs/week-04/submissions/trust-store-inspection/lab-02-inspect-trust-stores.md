@@ -38,6 +38,16 @@ This lab explored how macOS stores trusted root Certificate Authorities (CAs) an
   - Verify return code: 0 (ok)
 
 This confirms that the system trusts Google’s certificate because it chains up to a trusted root Certificate Authority already installed on the system.
+<img width="586" height="268" alt="C«USST«ArizonaL«Scottsdale0«GoDaddy com, Inc CN«Go Daddy Root Cert" src="https://github.com/user-attachments/assets/01c0f4dc-6c79-47e6-98f5-845b9b3d16bb" />
+
+![Trust Store Inspection](../../../assets/screenshots/week-04/lab-02-trust-store.png)
+
+<img width="569" height="61" alt="Pasted Graphic 26" src="https://github.com/user-attachments/assets/1cd34681-c79f-4fc7-8874-e3dc55068d34" />
+
+![Uploading C«USST«ArizonaL«Scottsdale0«GoDaddy.com, Inc.CN«Go Daddy Root Cert.png…]()
+
+
+The output confirms that the system trust store contains valid root CA certificates used to verify trusted connections.
 
 ---
 
