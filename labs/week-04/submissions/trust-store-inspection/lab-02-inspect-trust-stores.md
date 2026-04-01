@@ -52,7 +52,7 @@ This confirms that the system trusts Google’s certificate because it chains up
 ## Explanation
 Browsers trust certificates from websites you have never visited before because those websites present certificates that chain back to a root CA already trusted by the operating system.
 
-If an enterprise internal root CA were not installed in the trust store, internal sites, proxies, or services signed by that CA would fail validation and show certificate warnings or connection errors.
+If an enterprise's internal root CA were not installed in the trust store, internal sites, proxies, or services signed by that CA would fail validation and show certificate warnings or connection errors.
 
 One important observation from this lab is how many root CAs are already trusted by default. That demonstrates how much trust is delegated to external certificate authorities.
 
@@ -61,10 +61,10 @@ One important observation from this lab is how many root CAs are already trusted
 ## Challenges / Troubleshooting
 Initially, the certificate fields were not easy to read when using truncated OpenSSL output. I resolved this by using explicit flags to print the subject, issuer, and end date directly.
 
-I was also alittle bit confused about which root certificates to apply to the write up. I saw 2 for Go Daddy and DigiCert
+I was also a little bit confused about which root certificates to apply to the write up. I saw 2 for GoDaddy and DigiCert
 
 ---
 
 ## Artifacts
 - root_cas.pem
-EOF
+
