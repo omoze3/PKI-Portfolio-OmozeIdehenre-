@@ -44,8 +44,6 @@ This confirms that the system trusts Google’s certificate because it chains up
 
 ![Trust Store Inspection](../../../assets/screenshots/week-04/lab-02-trust-store.png)
 
-<img width="569" height="61" alt="Pasted Graphic 26" src="https://github.com/user-attachments/assets/1cd34681-c79f-4fc7-8874-e3dc55068d34" />
-
 The output confirms that the system trust store contains valid root CA certificates used to verify trusted connections.
 
 ---
