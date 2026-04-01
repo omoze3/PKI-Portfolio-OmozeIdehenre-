@@ -29,6 +29,10 @@ This lab focused on working with the same certificate in different storage forma
 - The DER file appeared as binary and was not human-readable in a text editor.
 - The restored PEM matched the original after converting PEM → DER → PEM.
 - The PFX verification confirmed that the bundle was created successfully and contained certificate material protected by a password.
+- openssl s_client -connect google.com:443 -servername google.com \
+| openssl x509 -text -noout
+<img width="558" height="319" alt="Serial Number" src="https://github.com/user-attachments/assets/af071131-e770-4980-a3d1-d89d7ace0c1d" />
+
 
 ---
 
@@ -36,6 +40,7 @@ This lab focused on working with the same certificate in different storage forma
 - PEM is text-based and easy to inspect manually.
 - DER is binary and often used when a compact encoded format is needed.
 - PFX packages a certificate together with its private key and is commonly used for transport and import into systems.
+- The diff command produced no output, confirming the conversion round-trip was lossless.
 
 ---
 
