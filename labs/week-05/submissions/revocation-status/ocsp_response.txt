@@ -1,0 +1,35 @@
+OCSP Request Data:
+    Version: 1 (0x0)
+    Requestor List:
+        Certificate ID:
+          Hash Algorithm: sha1
+          Issuer Name Hash: EE309C404F6B6B6256B48E26BFE4451298BAE4DD
+          Issuer Key Hash: 75BEC477AE89F644377DCFB1681F1D1AEBDC3459
+          Serial Number: 57A37E67BD274C8009B0EF3588625B3D
+    Request Extensions:
+        OCSP Nonce: 
+            04101C2F2031E3D43E42CE1E3A4B435DE0EE
+OCSP Response Data:
+    OCSP Response Status: successful (0x0)
+    Response Type: Basic OCSP Response
+    Version: 1 (0x0)
+    Responder Id: 75BEC477AE89F644377DCFB1681F1D1AEBDC3459
+    Produced At: Apr  3 10:54:59 2026 GMT
+    Responses:
+    Certificate ID:
+      Hash Algorithm: sha1
+      Issuer Name Hash: EE309C404F6B6B6256B48E26BFE4451298BAE4DD
+      Issuer Key Hash: 75BEC477AE89F644377DCFB1681F1D1AEBDC3459
+      Serial Number: 57A37E67BD274C8009B0EF3588625B3D
+    Cert Status: good
+    This Update: Apr  3 10:54:59 2026 GMT
+    Next Update: Apr 10 09:54:58 2026 GMT
+
+    Signature Algorithm: ecdsa-with-SHA256
+         30:45:02:20:7a:74:72:f5:8c:47:5f:7e:f6:63:a7:14:54:c0:
+         68:c6:62:20:ae:00:73:c5:dd:2e:1d:4b:20:a1:d3:0f:19:ed:
+         02:21:00:ac:59:6f:5e:dc:14:78:47:90:bb:de:36:34:ee:08:
+         7c:56:35:e1:f0:5b:af:9a:f2:05:cb:cd:49:98:6a:b7:77
+leaf_cert.pem: good
+	This Update: Apr  3 10:54:59 2026 GMT
+	Next Update: Apr 10 09:54:58 2026 GMT
