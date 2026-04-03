@@ -20,9 +20,13 @@ Environment
 Steps Performed
 
 1.Retrieved a live certificate chain using OpenSSL and saved the leaf certificate.
+
 2.Extracted and saved the issuer certificate required for validation.
+
 3.Inspected the leaf certificate to identify the Authority Information Access (AIA) and CRL Distribution Points.
+
 4.Located the OCSP responder URL from the certificate metadata.
+
 5.Executed an OCSP query using OpenSSL to check the revocation status of the certificate and saved the response output.
 
 
