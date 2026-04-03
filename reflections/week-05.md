@@ -44,11 +44,17 @@ It can be revoked if compromised
 If a certificate is expired or revoked, systems will no longer trust it — similar to how an expired ID might not be accepted.
 
 What questions remain?
+
 How do large organizations automate certificate renewal at scale?
+
 What tools are commonly used in enterprise environments for certificate lifecycle management (e.g., Venafi, AWS Certificate Manager)?
+
 How do monitoring systems detect and alert on upcoming certificate expiration?
+
 What are best practices for handling certificate rotation without downtime?
+
 How do zero-trust architectures integrate certificate validation and revocation checks?
+
 Final Reflection
 
 This week shifted my perspective from viewing certificates as static files to understanding them as part of a living trust system. The combination of hands-on troubleshooting and real-world implications made this one of the most practical and impactful weeks so far.
