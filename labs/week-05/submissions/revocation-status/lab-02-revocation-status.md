@@ -91,7 +91,10 @@ Challenges / Troubleshooting
 
 
 Artifacts
+
 leaf_cert.pem
+
 issuer_cert.pem
+
 ocsp_response.txt
 
