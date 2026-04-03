@@ -1,24 +1,80 @@
+Lab 1
 # Lab 01 — Generate a CSR
 
 ## Overview
+In this lab, I generated a private key and corresponding Certificate Signing Request (CSR), then used that CSR to create a signed certificate. This exercise demonstrates the foundational Public Key Infrastructure (PKI) workflow used in secure communications.
+The lab reinforces how identity is established and verified through cryptographic trust chains.
 
-In this lab, I generated a private key, created a Certificate Signing Request (CSR), inspected the CSR fields, and produced a signed certificate to simulate the certificate issuance workflow. This lab helped connect the certificate request process to the X.509 identity structure and reinforced how a CA uses a CSR to issue a certificate.
 
 ---
 
 ## Environment
-
-- Operating System: macOS
-- Terminal Used: Mac Terminal
-- OpenSSL Version: `openssl version`
+- Operating System: Mac OS
+- Terminal Used: OpenSSL
+- OpenSSL Version (`openssl version`): 3.3.6
 
 ---
 
 ## Steps Performed
+1. Created the Week 5 Lab 01 submission folder.
 
-### 1. Generated a private key
-
-I generated a 2048-bit RSA private key for the CSR workflow.
-
-```bash
 openssl genrsa -out test_key.pem 2048
+
+2. Generated a 2048-bit RSA private key for the test certificate request. This includes identity details such as:
+* Common Name (CN)
+* Organization (O)
+* Country (C)
+
+openssl req -new -key test_key.pem -out test_csr.pem
+
+3. To simulate a Certificate Authority (CA), I signed the CSR using the private key to generate a certificate.
+
+openssl x509 -req -in test_csr.pem -signkey test_key.pem -out test_cert.pem -days 365
+
+The following files were generated:
+* test_key.pem → Private key (sensitive, removed from repo)
+* test_csr.pem → Certificate Signing Request
+* test_cert.pem → Signed certificate
+
+The private key was intentionally removed from the repository to follow security best practices.
+
+
+4. I verified that the certificate was successfully generated and readable:
+openssl x509 -in test_cert.pem -text -noout
+
+This confirmed:
+* The certificate contains the expected subject information
+* The certificate is properly formatted
+* The validity period is correctly applied
+
+
+5. Security Considerations
+* Private keys must never be committed to source control
+* .gitignore was configured to exclude .key files
+* The private key (test_key.pem) was removed after use
+* Certificates and CSRs can be shared, but private keys must remain secure
+
+6. Real-World Application
+This workflow mirrors how secure systems operate in production:
+* A server generates a private key and CSR
+* The CSR is sent to a trusted Certificate Authority (CA)
+* The CA validates identity and signs the certificate
+* The signed certificate is used to enable HTTPS and encrypted communication
+This process is foundational in:
+
+
+* Web security (TLS/SSL)
+* Enterprise identity systems
+* Cloud infrastructure security
+
+7. Key Takeaways
+* A CSR links identity to a public key
+* The private key must remain protected at all times
+* Certificates establish trust through signatures
+* PKI enables secure communication across untrusted networks
+
+🧠 Mental Model
+Private Key = Identity ownership CSR = Request for trust Certificate = Verified identity
+
+
+
