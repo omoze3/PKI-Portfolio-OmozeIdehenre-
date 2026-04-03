@@ -9,7 +9,7 @@ The lab reinforces how identity is established and verified through cryptographi
 ---
 
 ## Environment
-- Operating System: Mac OS
+- Operating System: MacOS
 - Terminal Used: OpenSSL
 - OpenSSL Version (`openssl version`): 3.3.6
 
