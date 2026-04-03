@@ -8,7 +8,7 @@ The goal was to retrieve a live certificate, identify its issuer, locate revocat
 
 Environment
 
--Operating System: Mac OS
+-Operating System: MacOS
 
 -Terminal Used: Mac Terminal
 
