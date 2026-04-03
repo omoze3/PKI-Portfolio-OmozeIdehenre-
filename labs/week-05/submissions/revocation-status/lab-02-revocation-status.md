@@ -8,8 +8,11 @@ The goal was to retrieve a live certificate, identify its issuer, locate revocat
 Environment
 
 -Operating System: Mac OS
+
 -Terminal Used: Mac Terminal
+
 -OpenSSL Version (openssl version): 3.3.6
+
 -Target site used: http://c.pki.goog/we2/xuzt3PU9F_w.crl
 
 Steps Performed
