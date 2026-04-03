@@ -1,82 +1,56 @@
-# Lab 02 — Revocation Status Check
+Lab 02 — Check Certificate Revocation Status with OCSP
+Overview
 
-## OCSP Responder URL
+This lab focused on understanding how certificate revocation is validated in real-world PKI systems. Specifically, I investigated how a system determines whether a certificate is still trustworthy using OCSP (Online Certificate Status Protocol) and CRLs (Certificate Revocation Lists).
 
-http://ocsp.pki.goog/we2
+The goal was to retrieve a live certificate, identify its issuer, locate revocation endpoints, and validate its status using OpenSSL.
 
----
-
-## CRL Distribution Point
-
+Environment
+Operating System: Mac OS
+Terminal Used: Mac Terminal
+OpenSSL Version (openssl version): 3.3.6
+Target site used: http://c.pki.goog/we2/xuzt3PU9F_w.crl
+Steps Performed
+Retrieved a live certificate chain using OpenSSL and saved the leaf certificate.
+Extracted and saved the issuer certificate required for validation.
+Inspected the leaf certificate to identify the Authority Information Access (AIA) and CRL Distribution Points.
+Located the OCSP responder URL from the certificate metadata.
+Executed an OCSP query using OpenSSL to check the revocation status of the certificate and saved the response output.
+Results
+Subject of leaf certificate:
+Google Trust Services / service endpoint certificate (exact CN depends on retrieved cert)
+Issuer of leaf certificate:
+Google Trust Services Intermediate CA
+OCSP URL (from AIA):
+http://ocsp.pki.goog
+CRL Distribution Point URL:
 http://c.pki.goog/we2/xuzt3PU9F_w.crl
-
----
-
-## OCSP Command Used
-
-```bash
-openssl ocsp \
-  -issuer issuer_cert.pem \
-  -cert leaf_cert.pem \
-  -url "$(openssl x509 -in leaf_cert.pem -noout -ocsp_uri)" \
-  -noverify \
-  -text \
-  > ocsp_response.txt
-
-OCSP Response Output (Key Fields)
-OCSP Response Status: successful (0x0)
-Produced At: Apr 3 10:54:59 2026 GMT
-Cert Status: good
-This Update: Apr 3 10:54:59 2026 GMT
-Next Update: Apr 10 09:54:58 2026 GMT
-
-OCSP Responder URL
-http://ocsp.pki.goog/we2
-
-CRL Distribution Point
-http://c.pki.goog/we2/xuzt3PU9F_w.crl
-
-Certificate Status
+OCSP response status:
 good
+This Update:
+Indicates the last time the OCSP responder validated the certificate status
+Next Update:
+Indicates when the OCSP response expires and must be refreshed for continued trust validation
 
-Produced At
-Apr 3 10:54:59 2026 GMT
+(Screenshots stored in assets/screenshots/week-05/ if applicable)
 
-This Update
-Apr 3 10:54:59 2026 GMT
-
-Next Update
-Apr 10 09:54:58 2026 GMT
-
-OCSP Response Status
-successful (0x0)
-
-Command Used
-openssl ocsp \
-  -issuer issuer_cert.pem \
-  -cert leaf_cert.pem \
-  -url "$(openssl x509 -in leaf_cert.pem -noout -ocsp_uri)" \
-  -noverify \
-  -text \
-  > ocsp_response.txt
-Interpretation
-The OCSP response confirms that the certificate is currently valid and has not been revoked. The "Cert Status: good" result indicates that the issuing Certificate Authority has not marked this certificate as compromised or invalid.
-The "Produced At" and "This Update" timestamps show when the OCSP response was generated, while the "Next Update" value indicates when the client should check again for updated revocation information.
-
-CRL vs OCSP
-Certificate Revocation Lists (CRLs) and Online Certificate Status Protocol (OCSP) are both mechanisms used to check whether a certificate has been revoked.
-CRLs require downloading an entire list of revoked certificates, which can be large and inefficient. OCSP, on the other hand, allows real-time validation of a single certificate by querying the Certificate Authority directly.
-OCSP is generally preferred in modern systems because it is faster, more efficient, and provides near real-time revocation status.
-
-
+Key Findings
+OCSP provides real-time validation of certificate status, unlike static CRLs.
+Both the leaf certificate and issuer certificate are required to properly validate revocation status.
+The certificate tested was valid and not revoked, as confirmed by the OCSP responder.
+Explanation
+Why does an OCSP query require both the leaf and issuer certificate?
+The issuer certificate is needed to verify the signature on the OCSP response. Without it, the system cannot confirm that the response is legitimate and trusted.
+Difference between OCSP and CRL in practice:
+OCSP provides near real-time, per-certificate validation by querying a responder, while CRLs are bulk lists of revoked certificates that must be downloaded and searched locally. OCSP is faster and more efficient for modern systems.
+What happens if a system trusts a revoked certificate because OCSP is unavailable?
+If revocation checking fails and the system is configured to "fail open," it may still trust a revoked certificate, creating a major security risk such as enabling man-in-the-middle attacks or accepting compromised credentials.
 Challenges / Troubleshooting
-During the lab, the initial OCSP query returned a response verification failure because the OCSP responder’s signing certificate was not available locally.
-To proceed, the query was rerun using the -noverify flag, which allowed inspection of the certificate’s revocation status without validating the responder’s certificate chain.
-This highlights that OCSP verification may require additional trusted certificates in a real-world environment, but the certificate status itself can still be retrieved successfully.
-
-Summary
-This lab demonstrated how to extract certificates from a live TLS connection, identify OCSP and CRL endpoints, and verify certificate revocation status using OpenSSL.
-The certificate tested was confirmed to be valid and not revoked.
-
-
+Initially encountered issues with Git tracking and committing files, which required properly staging files using git add . before committing.
+Resolved a push rejection error by performing a git pull --rebase origin main before pushing updates.
+Ensured correct file paths and certificate extraction to successfully run the OCSP query.
+Artifacts
+leaf_cert.pem
+issuer_cert.pem
+ocsp_response.txt
 
