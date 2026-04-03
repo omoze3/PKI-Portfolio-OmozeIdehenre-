@@ -1,0 +1,118 @@
+Week 05 Lesson Notes — Lab 02: Certificate Revocation (OCSP / CRL)
+
+1. Core Concept
+
+This lab focused on how systems check if a certificate is still trustworthy after issuance, using:
+
+OCSP (real-time validation)
+CRL (pre-published revocation lists)
+
+2. Why It Matters
+
+Certificates can be compromised. Revocation ensures that:
+
+Stolen or misused certificates are invalidated
+Systems do not trust compromised identities
+
+Without revocation, trust would be static and insecure.
+
+3. Technical Breakdown
+
+Definition
+
+Revocation is the process of marking a certificate as no longer valid before its expiration date.
+
+Components
+Leaf certificate
+Issuer certificate
+OCSP responder
+CRL distribution point
+Flow
+Client receives certificate
+Extracts OCSP/CRL info
+Queries responder or checks CRL
+Determines status: good / revoked / unknown
+Trust Implications
+A revoked certificate = immediate loss of trust
+Trust depends on external validation systems
+
+4. Common Misconceptions
+“If a cert isn’t expired, it’s valid.”
+It may be revoked
+“OCSP and CRL are interchangeable.”
+OCSP = real-time, CRL = static list
+
+5. Where This Shows Up
+Web security (browser validation)
+Internal enterprise systems (identity verification)
+Cloud environments (certificate validation services)
+DevOps workflows (secure service communication)
+Mental Model
+
+Trust is not permanent — it must be checked continuously.
+
+Week 05 Lesson Notes — Lab 03: Certificate Expiration & Replacement
+
+1. Core Concept
+
+This lab focused on certificate expiration, how expired certificates behave, and how to replace them.
+
+Expiration is a built-in mechanism that enforces periodic renewal of trust.
+
+2. Why It Matters
+
+Expired certificates are one of the most common causes of outages:
+
+Websites stop working
+
+APIs fail
+
+Secure connections break
+
+Organizations must monitor and rotate certificates proactively.
+
+3. Technical Breakdown
+Definition
+
+Expiration is the predefined validity window of a certificate (notBefore → notAfter).
+
+Components
+Certificate validity period
+System clock (critical for validation)
+Replacement certificate
+Flow
+Certificate is issued with validity dates
+System checks current time vs expiration
+If expired → connection fails
+New certificate must be generated and deployed
+Trust Implications
+Expired certificate = not trusted
+Even valid cryptography is rejected if time validity fails
+
+4. Common Misconceptions
+“Expired certs still work internally.”
+They fail validation everywhere
+“You can extend a certificate.”
+You must replace it
+
+5. Where This Shows Up
+Web security (browser errors)
+Internal enterprise systems (service outages)
+Cloud environments (load balancers, gateways)
+DevOps workflows (certificate rotation pipelines)
+Mental Model
+
+Trust has a time limit — if not renewed, it expires.
+
+Final Mental Model Across All Labs
+
+Identity + Trust + Verification
+
+Identity → Certificate proves who you are
+Trust → Signed by a trusted authority
+Verification → Must pass:
+Format compatibility
+Revocation checks
+Expiration checks
+
+A certificate is only trusted if it continuously passes validation.
