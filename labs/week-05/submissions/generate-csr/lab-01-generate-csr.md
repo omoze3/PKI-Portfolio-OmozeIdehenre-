@@ -1,0 +1,24 @@
+# Lab 01 — Generate a CSR
+
+## Overview
+
+In this lab, I generated a private key, created a Certificate Signing Request (CSR), inspected the CSR fields, and produced a signed certificate to simulate the certificate issuance workflow. This lab helped connect the certificate request process to the X.509 identity structure and reinforced how a CA uses a CSR to issue a certificate.
+
+---
+
+## Environment
+
+- Operating System: macOS
+- Terminal Used: Mac Terminal
+- OpenSSL Version: `openssl version`
+
+---
+
+## Steps Performed
+
+### 1. Generated a private key
+
+I generated a 2048-bit RSA private key for the CSR workflow.
+
+```bash
+openssl genrsa -out test_key.pem 2048
