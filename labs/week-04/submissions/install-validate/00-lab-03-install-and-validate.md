@@ -75,7 +75,30 @@ Additionally, removing the certificate via CLI required troubleshooting due to m
 ---
 
 ## Artifacts
-- test-root-ca.crt
-- test-signed.crt
-- test-signed.csr
+
+The following artifacts were generated during this lab to demonstrate certificate creation, signing, and trust validation:
+
+- artifacts/test-root-ca.crt  
+  Root Certificate Authority (CA) certificate used to establish trust.
+
+- artifacts/test-root-ca.srl  
+  Serial number file automatically generated during certificate signing.
+
+- artifacts/test-signed.crt  
+  Leaf certificate signed by the root CA, used to validate trust.
+
+- artifacts/test-signed.csr  
+  Certificate Signing Request (CSR) used to request the signed certificate.
+
+  ### Artifact Context
+
+These artifacts reflect a full certificate lifecycle workflow:
+
+1. A root CA was generated and installed into the system trust store.
+2. A CSR was created for a leaf certificate.
+3. The CSR was signed using the root CA.
+4. The signed certificate was validated against the trusted root.
+
+This demonstrates how trust chains are established and verified in real-world PKI environments.
+
 
