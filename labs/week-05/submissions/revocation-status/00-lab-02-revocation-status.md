@@ -94,11 +94,9 @@ Challenges / Troubleshooting
 -Ensured correct file paths and certificate extraction to successfully run the OCSP query.
 
 
-Artifacts
-
-leaf_cert.pem
-
-issuer_cert.pem
-
-ocsp_response.txt
+## Artifacts
+- artifacts/google-chain.txt
+- artifacts/issuer_cert.pem
+- artifacts/leaf_cert.pem
+- artifacts/ocsp_response.txt
 
