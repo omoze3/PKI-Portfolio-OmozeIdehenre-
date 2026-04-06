@@ -73,7 +73,7 @@ This process is foundational in:
 * Certificates establish trust through signatures
 * PKI enables secure communication across untrusted networks
 
-🧠 Mental Model
+Mental Model
 Private Key = Identity ownership CSR = Request for trust Certificate = Verified identity
 
 
