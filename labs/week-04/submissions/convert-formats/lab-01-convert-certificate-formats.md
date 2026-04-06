@@ -55,8 +55,8 @@ The main challenge was retrieving only the leaf certificate cleanly from the TLS
 ---
 
 ## Artifacts
-- leaf_cert.pem
-- leaf_cert.der
-- leaf_cert_restored.pem
-- test_cert.pem
-- test_bundle.pfx
+- certs/leaf_cert.pem
+- certs/leaf_cert.der
+- certs/leaf_cert_restored.pem
+- certs/test_cert.pem
+- artifacts/test_bundle.pfx
