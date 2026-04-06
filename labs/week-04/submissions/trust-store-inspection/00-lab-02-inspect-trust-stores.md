@@ -74,5 +74,21 @@ I was also a little bit confused about which root certificates to apply to the w
 ---
 
 ## Artifacts
-- root_cas.pem
+
+The following artifact was generated during this lab to demonstrate inspection of the system trust store:
+
+- artifacts/root_cas.pem  
+
+Extracted bundle of trusted root Certificate Authorities from the system trust store. This file was used to analyze how operating systems maintain and validate trusted certificate chains.
+
+### Artifact Context
+
+This artifact represents the foundation of trust in PKI systems. By inspecting the system trust store, we can observe how trusted root Certificate Authorities are preloaded and used to validate certificate chains during secure communications (e.g., HTTPS).
+
+Understanding this trust store is critical for:
+- Verifying certificate authenticity
+- Troubleshooting trust failures
+- Managing enterprise trust policies
+
+
 
