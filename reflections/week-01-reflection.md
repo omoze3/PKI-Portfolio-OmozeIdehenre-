@@ -21,6 +21,9 @@ I would explain it as a system of digital identity and trust. Imagine sending a 
 At this time, I do not have any major questions. However, I am interested in learning more about how trust chains are managed and maintained in large enterprise environments.
 
 Professional Growth Check
-I documented my work clearly and in my own words
-I used structured formatting in my submission files
-My commit message was meaningful and descriptive
+
+-I documented my work clearly and in my own words
+
+-I used structured formatting in my submission files
+
+-My commit message was meaningful and descriptive
