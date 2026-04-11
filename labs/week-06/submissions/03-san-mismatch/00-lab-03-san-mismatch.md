@@ -94,4 +94,3 @@ The SAN entries included *.badssl.com and badssl.com, but did not include wrong.
 Reflection
 This lab reinforced that TLS validation includes both trust and identity verification. Even when a certificate is valid and trusted, a mismatch between the hostname and SAN entries will cause the connection to fail. I had to carefully distinguish between a valid certificate and a valid identity, which are separate validation steps in the PKI framework.
 
-CVI PKI Career Pathway — Foundations Phase
