@@ -1,4 +1,4 @@
-Phase 1 Reflection Project  
+Week 6 Reflection   
 CVI PKI Career Pathway — Foundations Phase  
 
 ---
