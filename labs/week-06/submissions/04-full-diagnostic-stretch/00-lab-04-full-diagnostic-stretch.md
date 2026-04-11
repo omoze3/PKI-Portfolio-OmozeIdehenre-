@@ -1,4 +1,4 @@
-[PASTE FULL WRITE-UP HERE]
+Reflection
 EOFgit add labs/week-06/submissions/full-diagnostic-stretch/lab-04-full-diagnostic-stretch.md
 git commit -m "Add Week 6 Lab 04 full diagnostic incident report"
 git pull origin main --no-rebase
