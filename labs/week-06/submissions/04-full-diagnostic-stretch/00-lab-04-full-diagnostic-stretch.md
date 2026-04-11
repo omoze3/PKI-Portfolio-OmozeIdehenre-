@@ -15,7 +15,7 @@ Clinical staff on the new subnet (10.22.0.0/24) are unable to access the EHR sys
 
 Technical Findings
 
-Finding 1 — Missing Root CA in Clinical Subnet Trust Stores
+Finding 1: Missing Root CA in Clinical Subnet Trust Stores
 Type: Trust Store
 Severity: Critical
 
@@ -29,7 +29,7 @@ Evidence:
 
 ---
 
-Finding 2 — Certificate Replacement with New Key
+Finding 2: Certificate Replacement with New Key
 Type: Certificate
 Severity: Medium
 
@@ -42,7 +42,7 @@ Evidence:
 
 ---
 
-Finding 3 — Lack of Post-Deployment Validation Across Subnets
+Finding 3: Lack of Post-Deployment Validation Across Subnets
 Type: Configuration
 Severity: High
 
