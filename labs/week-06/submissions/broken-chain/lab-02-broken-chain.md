@@ -4,7 +4,7 @@ Week 6 · PKI Incident Diagnosis & Troubleshooting CVI PKI Career Pathway — Ph
 Incident Summary
 Target system: Radiology imaging platform (simulated via incomplete-chain.badssl.com)
 Diagnosed by: Omoze Idehenre
-Date of diagnosis: [enter date]
+Date of diagnosis: 4/10/2026
 
 What failed
 TLS validation failed because the server did not provide the intermediate certificate needed to complete the certificate chain.
