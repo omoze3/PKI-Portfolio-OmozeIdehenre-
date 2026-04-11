@@ -1,4 +1,7 @@
-Lab 04 — Full Diagnostic Scenario: Incident Report
+Lab 04: Full Diagnostic 
+
+Scenario: Incident Report
+
 Week 6 · PKI Incident Diagnosis & Troubleshooting CVI PKI Career Pathway — Phase 1 Foundations
 
 PKI Incident Report
