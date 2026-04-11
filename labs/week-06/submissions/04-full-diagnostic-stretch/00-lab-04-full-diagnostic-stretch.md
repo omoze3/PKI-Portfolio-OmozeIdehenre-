@@ -164,4 +164,3 @@ This incident revealed a critical gap in how certificate trust is managed across
 Reflection
 The most challenging part of this investigation was recognizing that the certificate itself was not the problem, despite initial assumptions from the infrastructure team. It required discipline to follow the diagnostic framework rather than jumping to conclusions. In a real production environment, I would prioritize validating trust distribution early when issues are isolated to specific network segments.
 
-CVI PKI Career Pathway — Foundations Phase
