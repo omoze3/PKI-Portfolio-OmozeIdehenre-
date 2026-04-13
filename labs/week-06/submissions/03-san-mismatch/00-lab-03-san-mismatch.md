@@ -36,6 +36,7 @@ Remediation path
 7. Validate the fix using OpenSSL and browser testing to confirm the hostname matches the certificate.
 
 Prevention
+
 Ensure all required hostnames are included in the SAN field during certificate issuance. Implement validation checks during deployment to confirm hostname coverage before promoting certificates to production.
 
 Diagnostic Steps
