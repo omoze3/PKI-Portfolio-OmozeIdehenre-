@@ -41,7 +41,6 @@ Prevention
 Implement a post-renewal certificate deployment checklist that includes full-chain validation before a renewed certificate is placed into production. In addition, maintain certificate inventory and automate validation checks to ensure required intermediate certificates are installed after every renewal.
 
 Diagnostic Steps
-Document each step of the PKI Diagnostic Framework as you worked through it.
 
 Step 1 — Retrieve
 Command used:
