@@ -127,7 +127,7 @@ Evidence: Full certificate replacement performed without mention of revocation
 
 ---
 
-Root Cause
+Root Cause:
 The root cause of the incident is a gap in certificate trust distribution processes. The internal CA root certificate was deployed via Group Policy before the clinical subnet was created, resulting in devices on the new subnet lacking the required trust anchor. This was not identified because there was no validation process in place to confirm trust across newly added network segments. The issue is not a technical failure of the certificate, but an operational failure in environment synchronization and validation.
 
 ---
@@ -156,11 +156,11 @@ Prevention Recommendations
 
 ---
 
-Lessons Learned
+Lessons Learned:
 This incident revealed a critical gap in how certificate trust is managed across evolving network environments. While certificate issuance and renewal processes were functioning correctly, there was no mechanism to ensure that new network segments inherited the required trust configurations. Going forward, PKI operations must be tightly integrated with infrastructure changes to prevent similar issues.
 
 ---
 
-Reflection
+Reflection:
 The most challenging part of this investigation was recognizing that the certificate itself was not the problem, despite initial assumptions from the infrastructure team. It required discipline to follow the diagnostic framework rather than jumping to conclusions. In a real production environment, I would prioritize validating trust distribution early when issues are isolated to specific network segments.
 
