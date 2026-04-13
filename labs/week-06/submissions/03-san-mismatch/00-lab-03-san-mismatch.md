@@ -10,6 +10,7 @@ Diagnosed by: Omoze Idehenre
 Date of diagnosis: 4/11/2026
 
 What failed
+
 TLS validation failed due to a hostname mismatch between the requested domain and the certificate’s Subject Alternative Name (SAN) entries.
 
 Evidence
