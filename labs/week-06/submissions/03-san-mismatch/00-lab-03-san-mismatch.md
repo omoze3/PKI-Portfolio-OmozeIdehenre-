@@ -92,5 +92,6 @@ What you found:
 The SAN entries included *.badssl.com and badssl.com, but did not include wrong.host.badssl.com. This confirmed the mismatch between the requested hostname and the certificate identities. Revocation was not relevant because the certificate itself was valid.
 
 Reflection
+
 This lab reinforced that TLS validation includes both trust and identity verification. Even when a certificate is valid and trusted, a mismatch between the hostname and SAN entries will cause the connection to fail. I had to carefully distinguish between a valid certificate and a valid identity, which are separate validation steps in the PKI framework.
 
