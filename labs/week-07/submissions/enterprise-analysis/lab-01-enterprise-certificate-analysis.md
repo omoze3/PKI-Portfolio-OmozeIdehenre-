@@ -82,3 +82,56 @@ This deployment reflects a mature enterprise TLS architecture where certificate 
 The use of Amazon Trust Services for certificate issuance further indicates a cloud-aligned PKI strategy with automated lifecycle management. Together, these elements demonstrate a scalable, resilient, and security-focused infrastructure design typical of large SaaS platforms.
 
 
+Steps Performed
+
+I connected to the ServiceNow TLS endpoint using OpenSSL to retrieve the live certificate and full certificate chain. I redirected the output into a PEM file so I could analyze it locally.
+
+I then used OpenSSL commands to inspect the certificate fields, including subject, issuer, validity dates, and Subject Alternative Names (SAN). I also captured the full chain output to understand how the certificate is presented by the server.
+
+Finally, I used curl to inspect HTTP response headers to identify any infrastructure components such as CDNs or proxies that may affect TLS termination.
+
+Results
+Certificate Summary
+subject= /CN=servicenow.com
+issuer= /C=US/O=Amazon/CN=Amazon RSA 2048 M04
+notBefore=May 21 00:00:00 2025 GMT
+notAfter=Jun 19 23:59:59 2026 GMT
+
+Subject Alternative Names (SAN)
+DNS:servicenow.com, DNS:www.servicenow.com
+
+Key Usage
+Digital Signature, Key Encipherment
+
+Extended Key Usage
+
+TLS Web Server Authentication, TLS Web Client Authentication
+
+Infrastructure Clues
+server: AkamaiGHost
+
+Key Findings
+The certificate is currently valid and not expired.
+The certificate is issued by Amazon RSA 2048 M04, indicating AWS Certificate Manager is being used.
+The SAN field correctly includes both servicenow.com and www.servicenow.com, meaning hostname validation will succeed.
+The presence of AkamaiGHost in the headers indicates that Akamai CDN is involved, suggesting TLS termination may occur at the edge.
+The certificate supports proper key usage and extended key usage for TLS.
+
+Explanation
+These results confirm that ServiceNow is using a properly configured certificate with valid dates, correct hostname coverage, and a trusted issuer. The SAN field ensures that browsers can validate the domain name, which is critical for preventing TLS errors.
+
+The presence of Akamai indicates that TLS may terminate at a CDN layer rather than directly on origin servers. This is important in enterprise environments because certificate management may be handled separately from application infrastructure.
+
+Overall, this reflects a mature PKI deployment where certificate issuance, trust, and infrastructure are aligned.
+
+Challenges / Troubleshooting
+Initially, I needed to ensure that the OpenSSL output was properly redirected to a file so it could be parsed.
+Understanding where TLS terminates required additional inspection using curl headers.
+Identifying the role of Akamai required correlating certificate data with network response headers.
+
+Artifacts
+enterprise_cert.pem — Retrieved certificate from ServiceNow TLS endpoint
+full_chain_output.txt — Full certificate chain output from OpenSSL
+lab-01-enterprise-certificate-analysis.md — Completed lab write-up
+
+
