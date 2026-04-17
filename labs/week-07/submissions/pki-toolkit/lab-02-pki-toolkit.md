@@ -6,7 +6,8 @@ Completed: April 2026
 
 ## About This Document
 
-This document is my personal PKI reference built from hands-on lab work across Weeks 1–7. It captures the tools I actually used, when I used them, and how they helped me diagnose certificate and TLS-related issues.
+This document is my personal PKI reference built from hands-on lab work across 
+Weeks 1–7. It captures the tools I actually used, when I used them, and how they helped me diagnose certificate and TLS-related issues.
 
 This toolkit reflects how I approach PKI problems in real scenarios — retrieving certificates, validating trust chains, identifying failures, and understanding how infrastructure impacts security.
 
@@ -204,6 +205,210 @@ git add labs/week-07/submissions/pki-toolkit/lab-02-pki-toolkit.md
 git commit -m "Week 7 Lab 02 — PKI Toolkit: Phase 1 tools reference and skills summary"
 git pull origin main --no-rebase
 git push origin main
+
+DER → PEM conversion (Week 5 + 6 bridge)
+
+### openssl x509 -inform DER — Convert certificate formats
+
+**What it does:**  
+Converts certificates from DER format to PEM format.
+
+**When to use it:**  
+I use this when a certificate is provided in binary format (.der) and needs to be readable or used in other OpenSSL commands.
+
+**Example command from my labs:**
+```bash
+openssl x509 -inform DER -in intermediate.der -out issuer_cert.pem
+
+What the output tells you:
+Produces a readable PEM certificate that can be used for validation and inspection.
+
+Phase 1 source: Week 6, Lab 02 — Broken Chain
+
+
+---
+
+## 2. Add CSR inspection (Week 5)
+
+```md
+### openssl req -text -noout — Inspect a CSR
+
+**What it does:**  
+Displays the contents of a Certificate Signing Request.
+
+**When to use it:**  
+I use this after generating a CSR to verify the subject and requested fields before submitting it to a CA.
+
+**Example command from my labs:**
+```bash
+openssl req -in test_csr.pem -text -noout
+
+What the output tells you:
+Shows subject details and requested extensions that will be included in the certificate.
+
+Phase 1 source: Week 5, Lab 01 — Generate CSR
+
+
+---
+
+## 3. Add file inspection (Week 1–2 basics)
+
+```md
+### file — Identify certificate file types
+
+**What it does:**  
+Determines the format of a file (PEM, DER, text, etc.).
+
+**When to use it:**  
+I use this when I’m unsure what format a certificate is in before attempting to parse it.
+
+**Example command from my labs:**
+```bash
+file intermediate.der
+
+What the output tells you:
+Indicates whether the file is binary (DER) or text-based (PEM).
+
+Phase 1 source: Week 5 certificate handling work
+
+
+---
+
+## 4. Add basic inspection command (Week 1–3 habit)
+
+```md
+### ls — Inspect directory contents
+
+**What it does:**  
+Lists files in a directory.
+
+**When to use it:**  
+I used this throughout all labs to verify file locations, artifacts, and outputs.
+
+**Example command from my labs:**
+```bash
+ls labs/week-06/submissions/02-broken-chain/artifacts
+
+What the output tells you:
+Confirms that expected files (certificates, outputs) are present.
+
+Phase 1 source: Weeks 1–7
+
+
+---
+
+# 🧠 OPTIONAL (BUT STRONG FOR INTERVIEWS)
+
+If you want your toolkit to stand out, add this:
+
+---
+
+## 5. Add Trust Chain Concept Tool (Week 2–3 thinking)
+
+```md
+### Certificate Chain Analysis — Trust Path Validation
+
+**What it does:**  
+Validates the relationship between leaf, intermediate, and root certificates.
+
+**When to use it:**  
+I use this when diagnosing trust failures or broken certificate chains.
+
+**Example command from my labs:**
+```bash
+openssl verify -untrusted issuer_cert.pem leaf_cert.pem
+
+What the output tells you:
+Shows whether the certificate chain can be trusted when intermediates are supplied.
+
+Phase 1 source: Week 6, Lab 02 — Broken Chain
+
+
+---
+
+# 🚨 WHY THIS MATTERS
+
+Without Weeks 1–5, your toolkit looks like:
+> “I only know how to inspect certificates”
+
+With them, it becomes:
+> “I understand the **full lifecycle of certificates**”
+
+That’s the difference between:
+- ❌ Junior lab completer  
+- ✅ Hireable security / cloud / platform engineer
+
+---
+
+# ✅ FINAL CHECKLIST
+
+Your toolkit should now include:
+
+✔ Retrieval → `openssl s_client`  
+✔ Parsing → `openssl x509`  
+✔ Validation → `openssl verify`  
+✔ Creation → `openssl req`  
+✔ Revocation → `openssl ocsp`  
+✔ Conversion → `-inform DER`  
+✔ Inspection → `curl`, `grep`, `file`, `ls`  
+✔ External tools → SSL Labs, crt.sh  
+
+---
+
+# 💬 If you want next
+
+I can:
+- Turn this into a **1-minute interview answer**
+- Or quiz you like a hiring manager (“Walk me through how you debug TLS failure”)
+
+That’s where this really clicks.
+
+
+---
+
+# 🚨 WHY THIS MATTERS
+
+Without Weeks 1–5, your toolkit looks like:
+> “I only know how to inspect certificates”
+
+With them, it becomes:
+> “I understand the **full lifecycle of certificates**”
+
+That’s the difference between:
+- ❌ Junior lab completer  
+- ✅ Hireable security / cloud / platform engineer
+
+---
+
+# ✅ FINAL CHECKLIST
+
+Your toolkit should now include:
+
+✔ Retrieval → `openssl s_client`  
+✔ Parsing → `openssl x509`  
+✔ Validation → `openssl verify`  
+✔ Creation → `openssl req`  
+✔ Revocation → `openssl ocsp`  
+✔ Conversion → `-inform DER`  
+✔ Inspection → `curl`, `grep`, `file`, `ls`  
+✔ External tools → SSL Labs, crt.sh  
+
+---
+
+# 💬 If you want next
+
+I can:
+- Turn this into a **1-minute interview answer**
+- Or quiz you like a hiring manager (“Walk me through how you debug TLS failure”)
+
+That’s where this really clicks.
+
+
+
+
+
+
+
 
 
 
