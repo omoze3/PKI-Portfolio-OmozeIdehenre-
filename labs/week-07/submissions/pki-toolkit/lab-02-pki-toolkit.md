@@ -1,6 +1,6 @@
 # My PKI Toolkit
 **CVI PKI Career Pathway — Phase 1 Foundations**  
-Completed: April 2026
+Completed: April 17, 2026
 
 ---
 
