@@ -62,7 +62,6 @@ openssl verify leaf_cert.pem
 What the output tells you:
 Indicates whether the certificate chain is complete or where validation fails.
 
-
 Phase 1 source: Week 6, Lab 02 — Broken Chain
 
 openssl req — Generate certificate signing requests
@@ -79,7 +78,6 @@ openssl req -new -key test_key.pem -out test_csr.pem
 
 What the output tells you:
 Produces a CSR that includes subject details used by the CA.
-
 
 Phase 1 source: Week 5, Lab 01 — Generate CSR
 
@@ -98,7 +96,6 @@ openssl ocsp -issuer issuer_cert.pem -cert leaf_cert.pem -url http://ocsp.exampl
 What the output tells you:
 Returns certificate status such as good, revoked, or unknown.
 
-
 Phase 1 source: Week 5, Lab 02 — Revocation Status
 
 openssl pkcs12 — Inspect certificate bundles
@@ -114,7 +111,6 @@ Example command from my labs:
 openssl pkcs12 -in bundle.p12 -info -noout
 What the output tells you:
 Displays contents of the bundle, including certificates and keys.
-
 
 Phase 1 source: Phase 1 certificate handling work
 
@@ -134,7 +130,6 @@ curl -sI https://www.servicenow.com | grep -i "server\|cf-ray\|x-cache\|via\|x-a
 What the output tells you:
 Reveals whether TLS is terminated by services like Akamai or Cloudflare.
 
-
 Phase 1 source: Week 7, Lab 01 — Enterprise Certificate Analysis
 
 grep — Filter certificate output
@@ -151,7 +146,6 @@ openssl x509 -in enterprise_cert.pem -noout -text | grep -A10 "Subject Alternati
 
 What the output tells you:
 Shows SAN entries to verify hostname coverage.
-
 
 Phase 1 source: Week 7, Lab 01 — Enterprise Certificate Analysis
 
@@ -170,7 +164,6 @@ Entered servicenow.com into SSL Labs and reviewed the results.
 What the output tells you:
 Shows TLS versions supported, certificate validity, and security rating.
 
-
 Phase 1 source: Week 7, Lab 01 — Enterprise Certificate Analysis
 
 crt.sh — Certificate Transparency search
@@ -187,7 +180,6 @@ Searched servicenow.com on crt.sh.
 What the output tells you:
 Shows issuance history and certificate lifecycle patterns.
 
-
 Phase 1 source: Week 7, Lab 01 — Enterprise Certificate Analysis
 
 Phase 1 Skills Summary
@@ -197,14 +189,6 @@ Phase 1 taught me how to retrieve, inspect, and validate certificates in real en
 These tools helped me understand PKI as a system of trust rather than just files. I now approach certificate issues by analyzing identity, validation paths, and infrastructure behavior. This toolkit reflects how I would troubleshoot real-world TLS and certificate problems in an enterprise environment.
 
 ---
-
-# ✅ STEP 3 — Save + Commit
-
-```bash
-git add labs/week-07/submissions/pki-toolkit/lab-02-pki-toolkit.md
-git commit -m "Week 7 Lab 02 — PKI Toolkit: Phase 1 tools reference and skills summary"
-git pull origin main --no-rebase
-git push origin main
 
 DER → PEM conversion (Week 5 + 6 bridge)
 
@@ -228,7 +212,7 @@ Phase 1 source: Week 6, Lab 02 — Broken Chain
 
 ---
 
-## 2. Add CSR inspection (Week 5)
+##CSR inspection (Week 5)
 
 ```md
 ### openssl req -text -noout — Inspect a CSR
@@ -248,10 +232,9 @@ Shows subject details and requested extensions that will be included in the cert
 
 Phase 1 source: Week 5, Lab 01 — Generate CSR
 
-
 ---
 
-## 3. Add file inspection (Week 1–2 basics)
+## File inspection (Week 1–2 basics)
 
 ```md
 ### file — Identify certificate file types
@@ -271,10 +254,9 @@ Indicates whether the file is binary (DER) or text-based (PEM).
 
 Phase 1 source: Week 5 certificate handling work
 
-
 ---
 
-## 4. Add basic inspection command (Week 1–3 habit)
+## Basic inspection command (Week 1–3 habit)
 
 ```md
 ### ls — Inspect directory contents
@@ -294,16 +276,9 @@ Confirms that expected files (certificates, outputs) are present.
 
 Phase 1 source: Weeks 1–7
 
-
 ---
 
-# 🧠 OPTIONAL (BUT STRONG FOR INTERVIEWS)
-
-If you want your toolkit to stand out, add this:
-
----
-
-## 5. Add Trust Chain Concept Tool (Week 2–3 thinking)
+## Trust Chain Concept Tool (Week 2–3 thinking)
 
 ```md
 ### Certificate Chain Analysis — Trust Path Validation
@@ -324,84 +299,7 @@ Shows whether the certificate chain can be trusted when intermediates are suppli
 Phase 1 source: Week 6, Lab 02 — Broken Chain
 
 
----
 
-# 🚨 WHY THIS MATTERS
-
-Without Weeks 1–5, your toolkit looks like:
-> “I only know how to inspect certificates”
-
-With them, it becomes:
-> “I understand the **full lifecycle of certificates**”
-
-That’s the difference between:
-- ❌ Junior lab completer  
-- ✅ Hireable security / cloud / platform engineer
-
----
-
-# ✅ FINAL CHECKLIST
-
-Your toolkit should now include:
-
-✔ Retrieval → `openssl s_client`  
-✔ Parsing → `openssl x509`  
-✔ Validation → `openssl verify`  
-✔ Creation → `openssl req`  
-✔ Revocation → `openssl ocsp`  
-✔ Conversion → `-inform DER`  
-✔ Inspection → `curl`, `grep`, `file`, `ls`  
-✔ External tools → SSL Labs, crt.sh  
-
----
-
-# 💬 If you want next
-
-I can:
-- Turn this into a **1-minute interview answer**
-- Or quiz you like a hiring manager (“Walk me through how you debug TLS failure”)
-
-That’s where this really clicks.
-
-
----
-
-# 🚨 WHY THIS MATTERS
-
-Without Weeks 1–5, your toolkit looks like:
-> “I only know how to inspect certificates”
-
-With them, it becomes:
-> “I understand the **full lifecycle of certificates**”
-
-That’s the difference between:
-- ❌ Junior lab completer  
-- ✅ Hireable security / cloud / platform engineer
-
----
-
-# ✅ FINAL CHECKLIST
-
-Your toolkit should now include:
-
-✔ Retrieval → `openssl s_client`  
-✔ Parsing → `openssl x509`  
-✔ Validation → `openssl verify`  
-✔ Creation → `openssl req`  
-✔ Revocation → `openssl ocsp`  
-✔ Conversion → `-inform DER`  
-✔ Inspection → `curl`, `grep`, `file`, `ls`  
-✔ External tools → SSL Labs, crt.sh  
-
----
-
-# 💬 If you want next
-
-I can:
-- Turn this into a **1-minute interview answer**
-- Or quiz you like a hiring manager (“Walk me through how you debug TLS failure”)
-
-That’s where this really clicks.
 
 
 
