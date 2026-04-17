@@ -33,7 +33,7 @@ Phase 1 source: Week 7, Lab 01 — Enterprise Certificate Analysis
 openssl s_client — Retrieve live certificates
 
 What it does:
-Connects to a TLS endpoint and retrieves the certificate chain presented by the server.
+Connects to a TLS endpoint and retrieves the server's certificate chain.
 
 When to use it:
 I use this as the first step when diagnosing TLS issues or analyzing a live website’s certificate.
@@ -42,6 +42,7 @@ Example command from my labs:
 openssl s_client -connect servicenow.com:443 -showcerts 2>/dev/null
 What the output tells you:
 Shows the full certificate chain being served and whether intermediates are included.
+
 
 Phase 1 source: Week 7, Lab 01 — Enterprise Certificate Analysis
 
@@ -60,6 +61,7 @@ openssl verify leaf_cert.pem
 What the output tells you:
 Indicates whether the certificate chain is complete or where validation fails.
 
+
 Phase 1 source: Week 6, Lab 02 — Broken Chain
 
 openssl req — Generate certificate signing requests
@@ -76,6 +78,7 @@ openssl req -new -key test_key.pem -out test_csr.pem
 
 What the output tells you:
 Produces a CSR that includes subject details used by the CA.
+
 
 Phase 1 source: Week 5, Lab 01 — Generate CSR
 
@@ -94,6 +97,7 @@ openssl ocsp -issuer issuer_cert.pem -cert leaf_cert.pem -url http://ocsp.exampl
 What the output tells you:
 Returns certificate status such as good, revoked, or unknown.
 
+
 Phase 1 source: Week 5, Lab 02 — Revocation Status
 
 openssl pkcs12 — Inspect certificate bundles
@@ -108,7 +112,8 @@ Example command from my labs:
 
 openssl pkcs12 -in bundle.p12 -info -noout
 What the output tells you:
-Displays contents of the bundle including certificates and keys.
+Displays contents of the bundle, including certificates and keys.
+
 
 Phase 1 source: Phase 1 certificate handling work
 
@@ -128,6 +133,7 @@ curl -sI https://www.servicenow.com | grep -i "server\|cf-ray\|x-cache\|via\|x-a
 What the output tells you:
 Reveals whether TLS is terminated by services like Akamai or Cloudflare.
 
+
 Phase 1 source: Week 7, Lab 01 — Enterprise Certificate Analysis
 
 grep — Filter certificate output
@@ -144,6 +150,7 @@ openssl x509 -in enterprise_cert.pem -noout -text | grep -A10 "Subject Alternati
 
 What the output tells you:
 Shows SAN entries to verify hostname coverage.
+
 
 Phase 1 source: Week 7, Lab 01 — Enterprise Certificate Analysis
 
@@ -162,6 +169,7 @@ Entered servicenow.com into SSL Labs and reviewed the results.
 What the output tells you:
 Shows TLS versions supported, certificate validity, and security rating.
 
+
 Phase 1 source: Week 7, Lab 01 — Enterprise Certificate Analysis
 
 crt.sh — Certificate Transparency search
@@ -177,6 +185,7 @@ Searched servicenow.com on crt.sh.
 
 What the output tells you:
 Shows issuance history and certificate lifecycle patterns.
+
 
 Phase 1 source: Week 7, Lab 01 — Enterprise Certificate Analysis
 
