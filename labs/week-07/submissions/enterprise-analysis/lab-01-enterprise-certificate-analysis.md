@@ -134,12 +134,13 @@ Overall, this reflects a mature PKI deployment where certificate issuance, trust
 
 Challenges / Troubleshooting
 
-Initially, I needed to ensure that the OpenSSL output was properly redirected to a file so it could be parsed.
+Initially, I needed to ensure that the OpenSSL output was properly redirected to a file for parsing.
 
 Understanding where TLS terminates required additional inspection using curl headers.
 Identifying the role of Akamai required correlating certificate data with network response headers.
 
 Artifacts
+
 enterprise_cert.pem — Retrieved certificate from ServiceNow TLS endpoint
 full_chain_output.txt — Full certificate chain output from OpenSSL
 lab-01-enterprise-certificate-analysis.md — Completed lab write-up
