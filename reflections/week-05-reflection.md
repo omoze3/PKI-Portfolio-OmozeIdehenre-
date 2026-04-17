@@ -1,3 +1,5 @@
+Week 05 Reflection
+
 What did you learn this week?
 
 This week deepened my understanding of the certificate lifecycle, specifically how certificates are validated, revoked, and eventually expire. I learned how to actively check certificate status using OCSP and how expiration is not a random event but a predictable failure point.

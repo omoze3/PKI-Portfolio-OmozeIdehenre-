@@ -37,10 +37,10 @@ Remediation path
 8. Confirm that the client can now complete the chain to a trusted root CA without errors.
 
 Prevention
+
 Implement a post-renewal certificate deployment checklist that includes full-chain validation before a renewed certificate is placed into production. In addition, maintain certificate inventory and automate validation checks to ensure required intermediate certificates are installed after every renewal.
 
 Diagnostic Steps
-Document each step of the PKI Diagnostic Framework as you worked through it.
 
 Step 1 — Retrieve
 Command used:
@@ -100,6 +100,6 @@ What you found:
 The Authority Information Access extension included a CA Issuers URI pointing to the missing intermediate certificate. After downloading and converting the intermediate certificate, verification succeeded when it was supplied with the -untrusted flag. This confirmed that the problem was an incomplete chain, not a revocation issue or an untrusted root problem.
 
 Reflection
+
 This lab reinforced the importance of validating the full certificate chain instead of assuming that a valid leaf certificate means the TLS configuration is correct. I had to slow down and think carefully about the difference between a certificate problem and a server configuration problem. The key lesson was that a certificate can be perfectly valid and still fail in production if the server does not present the required intermediate CA.
 
-CVI PKI Career Pathway — Foundations Phase

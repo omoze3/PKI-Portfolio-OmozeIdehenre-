@@ -9,7 +9,8 @@ Diagnosed by: Omoze Idehenre
 
 Date of diagnosis: 4/11/2026
 
-What failed
+What failed: 
+
 TLS validation failed due to a hostname mismatch between the requested domain and the certificate’s Subject Alternative Name (SAN) entries.
 
 Evidence
@@ -19,7 +20,7 @@ Evidence
 - OpenSSL verify return code: 0 (ok), indicating the certificate chain is valid
 - The requested hostname does not match any SAN entries in the certificate
 
-Why it failed
+Why it failed:
 The certificate presented by the server was valid, not expired, and chained to a trusted certificate authority. However, the hostname being accessed (wrong.host.badssl.com) was not included in the certificate’s Subject Alternative Name (SAN) entries. Because TLS requires an exact hostname match against the SAN field, the client rejected the connection despite the certificate being otherwise valid. This reflects the identity validation step in the PKI diagnostic framework.
 
 Chain status
@@ -35,6 +36,7 @@ Remediation path
 7. Validate the fix using OpenSSL and browser testing to confirm the hostname matches the certificate.
 
 Prevention
+
 Ensure all required hostnames are included in the SAN field during certificate issuance. Implement validation checks during deployment to confirm hostname coverage before promoting certificates to production.
 
 Diagnostic Steps
@@ -92,6 +94,6 @@ What you found:
 The SAN entries included *.badssl.com and badssl.com, but did not include wrong.host.badssl.com. This confirmed the mismatch between the requested hostname and the certificate identities. Revocation was not relevant because the certificate itself was valid.
 
 Reflection
+
 This lab reinforced that TLS validation includes both trust and identity verification. Even when a certificate is valid and trusted, a mismatch between the hostname and SAN entries will cause the connection to fail. I had to carefully distinguish between a valid certificate and a valid identity, which are separate validation steps in the PKI framework.
 
-CVI PKI Career Pathway — Foundations Phase
