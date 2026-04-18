@@ -26,6 +26,11 @@ The certificate presented by the server was valid, not expired, and chained to a
 Chain status
 The certificate chain was structurally intact and validated successfully. There were no issues related to certificate expiration or missing intermediates. The TLS failure was caused solely by a hostname mismatch.
 
+Chain validity: Valid
+Certificate expiration: Valid
+Intermediate CA: Present
+Hostname match: Failed
+
 Remediation path
 1. Identify the hostname being accessed by users.
 2. Generate a Certificate Signing Request (CSR) that includes the correct hostname in the SAN field.
@@ -34,6 +39,27 @@ Remediation path
 5. Install the updated certificate on the server.
 6. Restart or reload the service to apply the new certificate.
 7. Validate the fix using OpenSSL and browser testing to confirm the hostname matches the certificate.
+
+Why a DNS CNAME Will NOT Fix This (Required Section)
+
+A DNS CNAME only changes where a request is routed—it does not change how the browser validates identity.
+
+For example:
+
+A user types: staff.metrogeneral.org
+DNS may point it to another server
+BUT the browser still checks the certificate against staff.metrogeneral.org
+
+If that hostname is not listed in the certificate’s SAN:
+
+TLS validation fails
+
+Key Point (Non-Technical Explanation)
+
+Think of DNS like forwarding mail to a new address—but the ID being checked still has your original name on it.
+
+The certificate is the browser’s source of truth for identity.
+The only real fix is issuing a certificate that includes the correct hostname.
 
 Prevention
 
@@ -87,13 +113,49 @@ This confirmed that the certificate chain was valid and trusted. There were no i
 Step 4 — Check Revocation and Trust
 Command used:
 
-openssl x509 -in san_cert.pem -noout -text | grep -A5 "Subject Alternative Name"
+Extract OCSP URL
+
+openssl x509 -in san_cert.pem -noout -ocsp_uri
+
+Result
+
+(no output)
 
 What you found:
 
+No OCSP URL is provided in the certificate
+Revocation status cannot be checked via OCSP
+
 The SAN entries included *.badssl.com and badssl.com, but did not include wrong.host.badssl.com. This confirmed the mismatch between the requested hostname and the certificate identities. Revocation was not relevant because the certificate itself was valid.
+
+Conclusion
+Certificate is structurally valid
+No revocation information available via OCSP
+Failure is strictly due to hostname mismatch
 
 Reflection
 
-This lab reinforced that TLS validation includes both trust and identity verification. Even when a certificate is valid and trusted, a mismatch between the hostname and SAN entries will cause the connection to fail. I had to carefully distinguish between a valid certificate and a valid identity, which are separate validation steps in the PKI framework.
+This lab reinforced that TLS validation has two separate checks:
 
+Trust validation (chain of trust)
+Identity validation (hostname match)
+
+Even when trust is valid, identity failure alone is enough to break TLS.
+
+The key learning was understanding that:
+
+A certificate can be valid but incorrect
+SAN entries define identity—not the CN alone
+DNS cannot override certificate identity
+Mental Model
+
+Identity + Trust + Verification
+
+Identity = SAN entries
+Trust = Certificate chain
+Verification = Matching hostname + valid chain
+
+Artifacts
+
+san_cert.pem
+san_full.txt
