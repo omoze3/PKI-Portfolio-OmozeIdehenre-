@@ -118,5 +118,23 @@ This process is foundational in:
 Mental Model
 Private Key = Identity ownership CSR = Request for trust Certificate = Verified identity
 
+Artifacts
+
+Generated Files:
+
+test_csr.pem
+
+Certificate Signing Request containing:
+Subject identity details (CN, O, C)
+Public key associated with the private key
+Used to request certificate issuance
+
+test_cert.pem
+
+Self-signed certificate generated from the CSR:
+
+Valid for 365 days
+Contains verified identity + public key
+Represents a completed issuance workflow
 
 
