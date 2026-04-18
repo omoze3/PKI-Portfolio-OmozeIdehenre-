@@ -142,7 +142,9 @@ Identifying the role of Akamai required correlating certificate data with networ
 Artifacts
 
 enterprise_cert.pem — Retrieved certificate from ServiceNow TLS endpoint
+
 full_chain_output.txt — Full certificate chain output from OpenSSL
+
 lab-01-enterprise-certificate-analysis.md — Completed lab write-up
 
 
