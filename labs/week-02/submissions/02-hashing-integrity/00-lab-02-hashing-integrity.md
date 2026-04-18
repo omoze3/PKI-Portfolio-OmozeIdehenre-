@@ -16,14 +16,28 @@ This lab focused on understanding how cryptographic hashing works and how it is 
 ## Steps Performed
 
 1. Created a test file containing sample text data.
+
+   echo "This is a test message" > message.txt
+   
 2. Generated a SHA-256 hash of the file using OpenSSL and saved the output.
+
+   openssl dgst -sha256 message.txt > message.sha256.txt
+   
 3. Modified the original file by adding additional content.
+
+   echo "This is a test message with a change" > message.txt
+   
 4. Generated a second SHA-256 hash of the modified file.
+
+   openssl dgst -sha256 message.txt > message_tampered.sha256.txt
+   
 5. Compared the original and modified hash outputs to observe differences.
 
 ---
 
 ## Results
+
+![Hash Output](../../../assets/screenshots/week-04/hashing-output.png)
 
 - The original file produced a fixed-length SHA-256 hash.
 - After modifying the file, the new hash value was completely different.
@@ -48,7 +62,19 @@ Example observation:
 
 ## Explanation
 
-These results matter because hashing is a core mechanism used to verify data integrity in PKI systems. When data is hashed, any modification can be detected by comparing hash values. This is critical in digital signatures, certificate validation, and secure communications. However, hashing does not provide confidentiality, since the original data is still visible and not encrypted.
+These results matter because hashing is a core mechanism for verifying data integrity in PKI systems. When data is hashed, any modification can be detected by comparing hash values. This is critical in digital signatures, certificate validation, and secure communications. However, hashing does not provide confidentiality, since the original data is still visible and not encrypted.
+
+Key Insight
+
+Hashing allows systems to verify:
+
+“Has this data changed?”
+
+But it does NOT answer:
+
+“Can someone read this data?”
+
+That’s encryption’s role.
 
 ---
 
