@@ -93,4 +93,3 @@ That’s encryption’s role.
 
 ---
 
-*CVI PKI Career Pathway — Foundations Phase*
