@@ -8,7 +8,7 @@ Hostname analyzed: servicenow.com
 
 ### Certificate Summary
 - Subject CN: servicenow.com  
-- Subject Organization: Not explicitly listed (likely DV certificate)  
+- Subject Organization: Not explicitly listed (likely DV certificate) OR C=US O=Amazon
 - Issuer CN: Amazon RSA 2048 M04  
 - Not Before: May 21 00:00:00 2025 GMT  
 - Not After: Jun 19 23:59:59 2026 GMT  
