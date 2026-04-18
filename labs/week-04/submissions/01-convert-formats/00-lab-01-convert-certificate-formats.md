@@ -52,16 +52,12 @@ This lab focused on working with the same certificate in different storage forma
 ---
 
 ## Results
-- The PEM file was readable text with `BEGIN CERTIFICATE` and `END CERTIFICATE` markers.
-  -----BEGIN CERTIFICATE-----
-  
+- The PEM file was readable text with `BEGIN CERTIFICATE` and `END CERTIFICATE` markers.  
 - The DER file appeared as binary and was not human-readable in a text editor.
 - The restored PEM matched the original after converting PEM → DER → PEM.
 - The PFX verification confirmed that the bundle was created successfully and contained certificate material protected by a password.
 - openssl s_client -connect google.com:443 -servername google.com \
 | openssl x509 -text -noout
-
-
 
 ---
 
