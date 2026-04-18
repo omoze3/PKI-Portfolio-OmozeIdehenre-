@@ -24,7 +24,13 @@ Why it failed
 The leaf certificate itself was valid and within its validity period, so the failure was not caused by expiration or hostname mismatch. The problem was that the server did not send the intermediate certificate required to link the leaf certificate to a trusted root CA. This caused TLS validation to fail because the client could not build a complete chain of trust, which is exactly the type of chain failure covered in the Week 6 PKI diagnostic framework.
 
 Chain status
-The chain was broken. The leaf certificate was present and valid, but the required intermediate certificate, Let's Encrypt R13, was not being provided by the server. There were no separate expiration issues or hostname mismatch issues in this scenario; the TLS failure was caused by the incomplete chain alone.
+The chain was broken. The leaf certificate was present and valid, but the required intermediate certificate, Let's Encrypt R13, was not being provided by the server. There were no separate expiration issues or hostname mismatch issues in this scenario; the TLS failure was caused by the incomplete chain alone
+
+Leaf certificate: Present and valid
+
+Intermediate certificate: Missing
+
+Root CA: Trusted (but unreachable without intermediate)
 
 Remediation path
 1. Retrieve the leaf certificate from the affected server.
@@ -70,7 +76,7 @@ Key fields from the certificate:
 
 What you found:
 
-The leaf certificate was valid and not expired. The Issuer field identified Let's Encrypt R13 as the intermediate CA. The Authority Information Access extension provided a CA Issuers URI, confirming where the missing intermediate certificate could be retrieved.
+The leaf certificate was valid and not expired. The Issuer field identified Let's Encrypt R13 as the intermediate CA. The Authority Information Access extension provided a CA Issuer's URI, confirming where the missing intermediate certificate could be retrieved.
 
 Step 3 — Validate the Chain
 Command used:
@@ -83,9 +89,23 @@ Chain broken. OpenSSL returned:
 error 20 at 0 depth lookup: unable to get local issuer certificate
 leaf_cert.pem: verification failed: 20 (unable to get local issuer certificate)
 
+Validation After Repair (Success)
+
+openssl verify -untrusted issuer_cert.pem leaf_cert.pem
+
+Result:
+
+leaf_cert.pem: OK
+
 What you found:
 
 This confirmed that the client could not build a complete chain of trust from the leaf certificate to a trusted root. The failure was not in the leaf certificate itself, but in the absence of the required intermediate certificate.
+
+What This Proves
+
+The certificate itself is valid
+The failure was due to a missing intermediate
+Providing the intermediate restores trust
 
 Step 4 — Check Revocation and Trust
 Command used:
@@ -99,7 +119,42 @@ What you found:
 
 The Authority Information Access extension included a CA Issuers URI pointing to the missing intermediate certificate. After downloading and converting the intermediate certificate, verification succeeded when it was supplied with the -untrusted flag. This confirmed that the problem was an incomplete chain, not a revocation issue or an untrusted root problem.
 
+Key Insight:
+
+Even though local verification succeeds, the live server still fails because:
+
+The server does not send the intermediate certificate
+Clients cannot build the chain dynamically in all environments
+Important Flag Explanation
+
+-untrusted flag:
+
+Supplies intermediate certificates to OpenSSL without adding them to the trusted root store
+Allows temporary chain building for validation
+Simulates how the chain should work if properly configured
+Prevents falsely trusting a CA permanently on the system
+
 Reflection
 
 This lab reinforced the importance of validating the full certificate chain instead of assuming that a valid leaf certificate means the TLS configuration is correct. I had to slow down and think carefully about the difference between a certificate problem and a server configuration problem. The key lesson was that a certificate can be perfectly valid and still fail in production if the server does not present the required intermediate CA.
+
+The most important takeaway was learning to distinguish between:
+
+Certificate validity issues
+Chain construction issues
+Trust store issues
+Mental Model
+
+Identity + Trust + Verification
+
+Identity = Leaf certificate
+Trust = Certificate Authority chain
+Verification = Chain validation
+
+Artifacts
+
+leaf_cert.pem
+issuer_cert.pem
+intermediate.der
+fullchain.txt
 
