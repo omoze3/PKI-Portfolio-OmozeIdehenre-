@@ -76,13 +76,21 @@ Key fields from the certificate:
 
 | Field | Value |
 |---|---|
-| Subject CN | COMODO RSA Domain Validation Secure Server CA |
+| Subject CN | *.badssl.com |
 | Issuer |  C=GB, ST=Greater Manchester, L=Salford, O=COMODO CA Limited, CN=COMODO RSA Domain Validation Secure Server CA|
 | Not Before | Apr  9 00:00:00 2015 GMT |
 | Not After | Apr 12 23:59:59 2015 GMT |
 | SAN entries | DNS:*.badssl.com, DNS:badssl.com |
 
 What you found:
+
+Certificate expired 4,000+ days ago (~11 years)
+OpenSSL returned: certificate has expired
+Chain status: Structurally intact
+Certificate identity is correct for the domain
+Certificate is expired → root cause of TLS failure
+
+This confirms the failure is due to certificate expiration, not chain or trust issues.
 The certificate had expired because the current date was later than the Not After timestamp. This directly explains the TLS failure.
 
 Step 3 — Validate the Chain
@@ -96,6 +104,13 @@ The certificate chain was structurally present. The server returned the leaf cer
 What you found:
 This step confirmed that no chain-related issues were contributing to the failure. The chain could be built correctly, and the root CA was trusted. The TLS failure was isolated to the certificate being expired, not a chain construction or trust issue.
 
+Chain presented correctly
+No missing intermediates
+
+What This Proves
+Chain is structurally valid
+Failure is not chain-related
+
 Step 4 — Check Revocation and Trust
 Command used:
 
@@ -104,10 +119,29 @@ openssl x509 -in expired_cert.pem -noout -text | grep -A1 "OCSP"
 What you found:
 An OCSP URL was present in the certificate, indicating that revocation status could be checked if needed. However, revocation was not relevant to the remediation in this case because the certificate had already expired. An expired certificate is automatically considered invalid by TLS clients, so it must be replaced regardless of its revocation status.
 
+Key Insight
+
+Revocation is not relevant here because:
+
+Expiration is evaluated first
+Expired certificates are automatically invalid
+
+Even a “good” revocation status would not fix this
+
 Reflection
 This lab reinforced the importance of checking certificate validity dates early instead of guessing based on generic browser warnings. The parsing step was the key moment because the Not After field gave the exact reason for the TLS failure. In a real incident, I would still walk the full framework to rule out chain or trust issues before concluding the diagnosis.
 
+Mental Model
 
+Identity + Trust + Verification
+
+Identity = Subject + SAN
+Trust = Certificate chain
+Verification = Validity period + trust
+
+Artifacts
+
+expired_cert.pem
 
 
 
