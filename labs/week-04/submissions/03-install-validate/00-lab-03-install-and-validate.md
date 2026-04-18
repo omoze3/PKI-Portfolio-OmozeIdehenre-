@@ -34,6 +34,10 @@ This demonstrated how operating systems determine whether a certificate is trust
     ```
     test-signed.crt: OK
     ```
+    test-signed.crt: OK
+
+    <img width="213" height="68" alt="image" src="https://github.com/user-attachments/assets/649a745a-d633-41f0-9ae2-931fb2e4f2c3" />
+
   - This confirmed the system trusted the certificate chain
 
 - After removal:
@@ -41,7 +45,13 @@ This demonstrated how operating systems determine whether a certificate is trust
     ```
     verification failed: 20 (unable to get local issuer certificate)
     ```
-  - This confirmed the trust chain was broken after removing the root CA
+
+    verification failed: 20 (unable to get local issuer certificate)
+
+    <img width="570" height="69" alt="image" src="https://github.com/user-attachments/assets/f012c364-89fc-40e7-9694-dd99f7f5e07f" />
+
+  - This confirmed that the trust chain was broken after removing the root CA
+  - The certificate is no longer trusted
 
 - Trust chain validation was successfully established when the root CA was installed and failed immediately after removal
 
@@ -64,6 +74,20 @@ In enterprise environments, system administrators and security teams control whi
 
 If an attacker is able to install a malicious root CA on a system, they can intercept and decrypt secure communications (man-in-the-middle attacks), making this a critical security risk.
 
+Additional Insight 
+
+If a root CA expires, it causes the same failure as removing it:
+
+Clients will no longer trust certificates signed by it
+Chain validation fails completely
+
+This is why root CAs are issued with very long lifetimes (20+ years)
+
+This ensures:
+
+Stability of global trust systems
+Avoidance of widespread outages
+
 ---
 
 ## Challenges / Troubleshooting
@@ -79,16 +103,16 @@ Additionally, removing the certificate via CLI required troubleshooting due to m
 The following artifacts were generated during this lab to demonstrate certificate creation, signing, and trust validation:
 
 - artifacts/test-root-ca.crt  
-  Root Certificate Authority (CA) certificate used to establish trust.
+  Root Certificate Authority (CA) certificate is used to establish trust.
 
 - artifacts/test-root-ca.srl  
-  Serial number file automatically generated during certificate signing.
+  The serial number file is automatically generated during certificate signing.
 
 - artifacts/test-signed.crt  
   Leaf certificate signed by the root CA, used to validate trust.
 
 - artifacts/test-signed.csr  
-  Certificate Signing Request (CSR) used to request the signed certificate.
+  Certificate Signing Request (CSR) is used to request the signed certificate.
 
   ### Artifact Context
 
