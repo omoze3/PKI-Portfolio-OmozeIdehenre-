@@ -21,9 +21,15 @@ The lab reinforces how identity is established and verified through cryptographi
 openssl genrsa -out test_key.pem 2048
 
 2. Generated a 2048-bit RSA private key for the test certificate request. This includes identity details such as:
+
+Created CSR containing:
 * Common Name (CN)
 * Organization (O)
 * Country (C)
+
+CSR links:
+* Identity (subject details)
+* Public key
 
 openssl req -new -key test_key.pem -out test_csr.pem
 
@@ -38,6 +44,9 @@ The following files were generated:
 
 The private key was intentionally removed from the repository to follow security best practices.
 
+Simulated a Certificate Authority (CA)
+Signed the CSR to produce a certificate valid for 365 days
+
 
 4. I verified that the certificate was successfully generated and readable:
 openssl x509 -in test_cert.pem -text -noout
@@ -47,21 +56,54 @@ This confirmed:
 * The certificate is properly formatted
 * The validity period is correctly applied
 
+5. Validate Key Pair
 
-5. Security Considerations
+Extract Public Key from Private Key
+
+openssl rsa -in test_key.pem -pubout -out key_pub.pem
+
+Extract Public Key from Certificate
+
+openssl x509 -in test_cert.pem -pubkey -noout > cert_pub.pem
+
+Compare Keys
+
+diff key_pub.pem cert_pub.pem
+
+Result
+
+No output -> Keys match
+
+What This Proves
+
+The certificate corresponds to the correct private key
+The key pair is valid and usable for TLS
+
+If a CSR is generated using one private key, but the server is configured with a different private key:
+
+The certificate will still be issued successfully
+BUT the server cannot complete TLS handshakes
+Production Failure Scenario
+Browser error: TLS handshake failure
+The server cannot decrypt traffic
+Outage occurs despite a “valid” certificate
+
+This validation step prevents deploying a non-functional certificate
+
+
+6. Security Considerations
 * Private keys must never be committed to source control
 * .gitignore was configured to exclude .key files
 * The private key (test_key.pem) was removed after use
 * Certificates and CSRs can be shared, but private keys must remain secure
 
-6. Real-World Application
+7. Real-World Application
 This workflow mirrors how secure systems operate in production:
 * A server generates a private key and CSR
 * The CSR is sent to a trusted Certificate Authority (CA)
 * The CA validates identity and signs the certificate
 * The signed certificate is used to enable HTTPS and encrypted communication
 This process is foundational in:
-
 
 * Web security (TLS/SSL)
 * Enterprise identity systems
