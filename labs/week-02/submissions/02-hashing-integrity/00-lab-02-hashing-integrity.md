@@ -37,8 +37,6 @@ This lab focused on understanding how cryptographic hashing works and how it is 
 
 ## Results
 
-![Hash Output](../../../assets/screenshots/week-04/hashing-output.png)
-
 - The original file produced a fixed-length SHA-256 hash.
 - After modifying the file, the new hash value was completely different.
 - Even a small change in the file resulted in a drastically different hash output.
