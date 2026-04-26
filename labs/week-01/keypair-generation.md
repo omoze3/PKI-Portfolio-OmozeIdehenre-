@@ -64,10 +64,8 @@ The public key encrypts data or verifies signatures. It can not decrypt or gener
 ---
 
 ## Reflection
-In 3–5 sentences, explain:
 
 Why must the private key remain secret in a PKI system?
 
 The private key is our personal digital identity. Without full ownership, someone can use it to impersonate the owner and retrieve personal information designed to be private. They could create websites utilizing one's identity to illegally obtain information and even funds. 
 
-Focus on how identity is tied to possession of the private key.
