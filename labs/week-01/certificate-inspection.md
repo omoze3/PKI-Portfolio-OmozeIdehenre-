@@ -60,5 +60,6 @@ The lengthy list of DNS Names/SANS and the issuer aligns with the set of SANS/DN
 ## Reflection
 
 Based on your inspection, explain how this certificate contributes to secure HTTPS communication.
+
 Due to the details on the certificate, one can deduce that the website it belongs to is owned by the domain *.google.com. Therefore, legitimate. The Issuer Google Trust Services is also listed, along with the encrypted public key. This will likely ensure the secure exchange of the encryption keys (Public and Private). 
 (2–3 sentences)
