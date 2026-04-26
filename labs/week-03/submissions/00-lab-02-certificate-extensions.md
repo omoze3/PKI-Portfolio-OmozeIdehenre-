@@ -24,9 +24,7 @@ Digital Signature
 TLS Web Server Authentication
 
 ### Basic Constraints
-CA:FALSE
-
-<img width="553" height="467" alt="Google Certificate" src="https://github.com/user-attachments/assets/86f662d1-a259-4395-add5-3bd96e208c6d" />
+CA: FALSE
 
 ---
 
