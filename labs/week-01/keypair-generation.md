@@ -18,11 +18,16 @@ If using OpenSSL:
 ---
 
 ## Key Identification
+
 **Which file is the public key?**
 <!-- Example: public.key -->
+
 public_key.pem
+
 **Which file is the private key?**
+
 <!-- Example: private.key -->
+
 private_key.pem
 ---
 
