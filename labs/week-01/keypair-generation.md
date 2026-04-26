@@ -15,8 +15,6 @@ If using OpenSSL:
 
 **![Key Pair Generation](../../assets/screenshots/week-01/keypair-generation.png)**
 
-If using a browser-based generator, capture the generated key pair screen (redact sensitive portions of the private key before committing).
-
 ---
 
 ## Key Identification
