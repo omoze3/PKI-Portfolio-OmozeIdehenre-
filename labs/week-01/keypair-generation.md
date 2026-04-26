@@ -35,9 +35,11 @@ private_key.pem
 Briefly describe:
 - What makes the public key safe to share
 - What makes the private key sensitive
+  
 The public key is not private, but public and created to be shareable. It can not decrypt data or produce signatures without aligning with the private key. It can not perform these actions on its own. 
 ---
 The private key is not shared and allows the owner to decrypt encrypted data from the public key. It not only decrypts data from the public key, but it also formulates signatures. If someone retrieves access to the private key, they can impersonate the owner to obtain personal data, such as information from encrypted messages/details meant just for the owner of the key. 
+
 ## Security Scenario
 What would happen if someone obtained your private key?
 
