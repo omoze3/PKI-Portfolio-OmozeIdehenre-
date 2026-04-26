@@ -69,4 +69,3 @@ These results matter because symmetric encryption is widely used in real-world s
 
 ---
 
-*CVI PKI Career Pathway — Foundations Phase*
