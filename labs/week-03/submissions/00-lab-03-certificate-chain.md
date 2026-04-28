@@ -40,7 +40,6 @@ This lab focused on understanding how certificate chains establish trust in PKI 
 | intermediate.pem  | Sectigo Public Server Authentication CA DV E36 | Sectigo Public Server Authentication Root E46        | TRUE  |
 | root.pem          | USERTrust ECC Certification Authority        | USERTrust ECC Certification Authority               | TRUE  |
 
-<img width="578" height="340" alt="Server Certificate " src="https://github.com/user-attachments/assets/4ffde061-3c21-4f29-ac68-96205832e687" />
 
 ---
 
