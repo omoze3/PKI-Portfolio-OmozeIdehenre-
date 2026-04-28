@@ -1,4 +1,4 @@
-# Lab — Certificate Chain Analysis
+# Lab 03 — Certificate Chain Analysis
 
 ## Overview
 This lab focused on understanding how certificate chains establish trust in PKI systems. The goal was to identify the root, intermediate, and leaf certificates and analyze how they are connected through issuer and subject relationships.
