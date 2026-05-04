@@ -75,11 +75,17 @@ This lab focused on working with the same certificate in different storage forma
 A PFX requires a password because it contains sensitive key material. PEM is useful when working with servers and command-line tools because it is readable and easy to copy. DER is useful when a binary encoded certificate is required. PFX is useful when moving a certificate and its private key to another system, especially in enterprise or Windows-based environments. Private keys should never be committed to GitHub because anyone with the key could impersonate the identity associated with the certificate.
 
 PEM is ideal for servers and manual inspection
+
 DER is used when binary encoding is required
+
 PFX is used to transport certificates with private keys
+
 Security Insight
+
 PFX requires a password because it contains sensitive key material
+
 Private keys must never be committed to GitHub
+
 Anyone with a private key can impersonate that identity
 
 ---
@@ -92,7 +98,9 @@ openssl s_client ... | openssl x509
 This:
 
 Extracted only the certificate
+
 Avoided formatting errors
+
 Improved accuracy and efficiency
 
 ---
