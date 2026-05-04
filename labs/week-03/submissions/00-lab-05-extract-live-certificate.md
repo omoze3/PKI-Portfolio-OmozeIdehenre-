@@ -8,7 +8,7 @@ This lab focused on retrieving a live TLS certificate from a website and inspect
 ## Environment
 - OS: macOS
 - Terminal used: Mac Terminal
-- OpenSSL version: 
+- OpenSSL version: 3.3.6
 - Website used: github.com
 
 ---
