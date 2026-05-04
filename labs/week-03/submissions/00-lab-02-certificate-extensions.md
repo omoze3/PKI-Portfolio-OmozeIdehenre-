@@ -8,7 +8,7 @@ This lab focused on analyzing X.509 certificate extensions to understand how cer
 ## Environment
 - OS: macOS
 - Terminal used: Mac Terminal
-- OpenSSL version: 
+- OpenSSL version: 3.3.6
 
 ---
 
