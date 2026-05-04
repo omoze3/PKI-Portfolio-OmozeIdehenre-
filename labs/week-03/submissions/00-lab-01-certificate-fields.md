@@ -8,7 +8,7 @@ This lab focused on retrieving and analyzing an X.509 certificate using OpenSSL 
 ## Environment
 - OS: macOS
 - Terminal used: Mac Terminal
-- OpenSSL version:(run `openssl version`)3.3.6
+- OpenSSL version:3.3.6
 
 ---
 
