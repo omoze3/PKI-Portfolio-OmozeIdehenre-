@@ -72,13 +72,14 @@ When the root CA was installed into the system trust store, the operating system
 
 In enterprise environments, system administrators and security teams control which root CAs are installed on employee machines. This allows organizations to enforce internal trust policies and inspect secure traffic when necessary.
 
-If an attacker is able to install a malicious root CA on a system, they can intercept and decrypt secure communications (man-in-the-middle attacks), making this a critical security risk.
+If an attacker can install a malicious root CA on a system, they can intercept and decrypt secure communications (man-in-the-middle attacks), making this a critical security risk.
 
 Additional Insight 
 
 If a root CA expires, it causes the same failure as removing it:
 
 Clients will no longer trust certificates signed by it
+
 Chain validation fails completely
 
 This is why root CAs are issued with very long lifetimes (20+ years)
@@ -86,6 +87,7 @@ This is why root CAs are issued with very long lifetimes (20+ years)
 This ensures:
 
 Stability of global trust systems
+
 Avoidance of widespread outages
 
 ---
