@@ -77,6 +77,7 @@ No output -> Keys match
 What This Proves
 
 The certificate corresponds to the correct private key
+
 The key pair is valid and usable for TLS
 
 If a CSR is generated using one private key, but the server is configured with a different private key:
