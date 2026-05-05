@@ -12,29 +12,29 @@ Environment
 
 -Terminal Used: Mac Terminal
 
--OpenSSL Version (openssl version): 3.3.6
+-OpenSSL Version: 3.3.6
 
 -Target site used: http://c.pki.goog/we2/xuzt3PU9F_w.crl
 
 
 Steps Performed
 
-1.Retrieved a live certificate chain using OpenSSL and saved the leaf certificate.
+1. Retrieved a live certificate chain using OpenSSL and saved the leaf certificate.
 
-2.Extracted and saved the issuer certificate required for validation.
+2. Extracted and saved the issuer certificate required for validation.
 
-3.Inspected the leaf certificate to identify the Authority Information Access (AIA) and CRL Distribution Points.
+3. Inspected the leaf certificate to identify the Authority Information Access (AIA) and CRL Distribution Points.
 
-4.Located the OCSP responder URL from the certificate metadata.
+4. Located the OCSP responder URL from the certificate metadata.
 
-5.Executed an OCSP query using OpenSSL to check the revocation status of the certificate and saved the response output.
+5. Executed an OCSP query using OpenSSL to check the revocation status of the certificate and saved the response output.
 
 
 Results
 
 -Subject of leaf certificate:
 
-Google Trust Services / service endpoint certificate (exact CN depends on retrieved cert)
+Google Trust Services/service endpoint certificate (exact CN depends on retrieved cert)
 
 -Issuer of leaf certificate:
 
@@ -59,9 +59,6 @@ Indicates the last time the OCSP responder validated the certificate status
 -Next Update:
 
 Indicates when the OCSP response expires and must be refreshed for continued trust validation
-
-(Screenshots stored in assets/screenshots/week-05/ if applicable)
-
 
 Key Findings
 
