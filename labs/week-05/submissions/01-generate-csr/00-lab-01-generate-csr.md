@@ -11,7 +11,7 @@ The lab reinforces how identity is established and verified through cryptographi
 ## Environment
 - Operating System: MacOS
 - Terminal Used: OpenSSL
-- OpenSSL Version (`openssl version`): 3.3.6
+- OpenSSL Version: 3.3.6
 
 ---
 
