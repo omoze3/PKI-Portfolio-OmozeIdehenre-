@@ -1,4 +1,12 @@
-# Week 12 Lab 02 – Online Responder (OCSP) Configuration
+# Week 12 Lab 02 – Configure and Test the OCSP Responder
+
+Student Name: Omoze Idehenre 
+
+Date Completed: 5/31/2026
+
+Phase: 2 | Week: 12
+
+Submission Path: labs/week-12/lab-02-ocsp-responder.md
 
 ## Objective
 
