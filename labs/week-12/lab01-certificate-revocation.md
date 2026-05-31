@@ -1,8 +1,11 @@
 # Week 12 - Lab 01: Revoke a Certificate and Observe CRL Propagation
 
 Student Name: Omoze Idehenre 
+
 Date Completed: 5/31/2026
+
 Phase: 2 | Week: 12
+
 Submission Path: labs/week-12/lab-01-revoke-and-crl-propagation.md
 
 ## Objective
