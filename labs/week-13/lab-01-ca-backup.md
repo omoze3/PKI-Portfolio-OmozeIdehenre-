@@ -1,5 +1,12 @@
 # Week 13 - Lab 01: Active Directory Certificate Services (AD CS) Backup
 
+**Course:** Public Key Infrastructure (PKI)  
+**Week:** 13  
+**Lab:** 01 – Active Directory Certificate Services (AD CS) Backup
+**Platform:** Windows Server 2022  
+**Virtual Machine:** PKI-SRV01  
+**Date Completed:** June 26, 2026
+
 ## Objective
 
 Perform a full backup of an Enterprise Issuing Certificate Authority by exporting:
