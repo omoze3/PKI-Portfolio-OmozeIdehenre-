@@ -327,6 +327,6 @@ The following recovery tasks were successfully completed:
 
 # Outcome
 
-**Lab Status:** ✅ Successfully Completed
+**Lab Status:** Successfully Completed
 
 The Active Directory Certificate Services database was successfully restored from backup after simulating database loss. The Certificate Authority was returned to an operational state, demonstrating the complete recovery process for an Enterprise Issuing CA.
