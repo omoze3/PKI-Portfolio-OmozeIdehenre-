@@ -1,5 +1,12 @@
 # Week 13 - Lab 03: Restore Active Directory Certificate Services from Backup
 
+**Course:** Public Key Infrastructure (PKI)  
+**Week:** 13  
+**Lab:** 03 – Restore from Backup Files  
+**Platform:** Windows Server 2022  
+**Virtual Machine:** PKI-SRV01  
+**Date Completed:** June 28, 2026
+
 ## Objective
 
 Restore an Active Directory Certificate Services (AD CS) Certification Authority from a previously created backup by restoring both the CA database and the private key after simulating a catastrophic failure.
